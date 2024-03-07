@@ -65,7 +65,19 @@ form.createProfileForm .formitem.label{
   border: none;
   border-radius: .5rem;
   padding: .5rem;
-  
+}
+
+
+div.detailsCard {
+  margin: 2rem;
+  padding: 1rem;
+  border-radius: .5rem;
+  background-color: rgb(222, 227, 241);
+}
+
+div.detailsCard p {
+  margin-top: 0 !important;
+  margin-bottom: 1rem;
 }
 
 

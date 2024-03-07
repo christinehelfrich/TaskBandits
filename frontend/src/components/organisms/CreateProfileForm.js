@@ -1,23 +1,40 @@
-import React, {useState } from 'react'
+import React, {useState } from 'react';
+import { useForm } from 'react-hook-form';
+import axios from "axios";
+import { baseURL } from '../../utils/constant';
 
 const CreateProfileForm = () => {
-    const [inputs, setInputs] = useState({});
+
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+      } = useForm({
+        defaultValues: {
+            name: '',
+            bio: '',
+            photo: '',
+            skills: '',
+            hourlyWage: '',
+            area: '',
+            isUnder21: false,
+            experience: ''
+        }
+      });
 
     const handleChange = (event) => {
-      const name = event.target.name;
-      const value = event.target.value;
-      setInputs(values => ({...values, [name]: value}))
     }
   
-    const handleSubmit = (event) => {
-        console.log({event})
-        console.log({inputs})
-      event.preventDefault();
-      alert(inputs);
+    const onSubmit = (event) => {
+        console.log('event', event)
+        axios.post(`${baseURL}/profile`, {profile: event}).then((res) => {
+            console.log(res.data);
+
+        })
     }
   return (
 
-    <form className='createProfileForm' onSubmit={handleSubmit}>
+    <form className='createProfileForm' onSubmit={handleSubmit(onSubmit)}>
 
 
       <label className='formitem label name'>Enter your name:
@@ -25,7 +42,7 @@ const CreateProfileForm = () => {
         className='formitem input name'
         type="text" 
         name="name" 
-        value={inputs.name || ""} 
+        {...register("name")}
         onChange={handleChange}
       />
       </label>
@@ -35,7 +52,17 @@ const CreateProfileForm = () => {
           className='formitem input age'
           type="text" 
           name="bio" 
-          value={inputs.bio || ""} 
+          {...register("bio")}
+          onChange={handleChange}
+        />
+        </label>
+
+        <label className='formitem label photo'>Enter an photo:
+        <input 
+                className='formitem input photo'
+          type="text" 
+          name="photo" 
+          {...register("photo")}
           onChange={handleChange}
         />
         </label>
@@ -45,7 +72,7 @@ const CreateProfileForm = () => {
                 className='formitem input skills'
           type="text" 
           name="skills" 
-          value={inputs.skills || ""} 
+          {...register("skills")}
           onChange={handleChange}
         />
         </label>
@@ -55,7 +82,7 @@ const CreateProfileForm = () => {
                 className='formitem input hourlyWage'
           type="text" 
           name="hourlyWage" 
-          value={inputs.hourlyWage || ""} 
+          {...register("hourlyWage")}
           onChange={handleChange}
         />
         </label>
@@ -65,7 +92,7 @@ const CreateProfileForm = () => {
                 className='formitem input area'
           type="text" 
           name="area" 
-          value={inputs.area || ""} 
+          {...register("area")}
           onChange={handleChange}
         />
         </label>
@@ -75,7 +102,7 @@ const CreateProfileForm = () => {
                 className='formitem input isUnder21'
           type="checkbox" 
           name="isUnder21" 
-          value={inputs.isUnder21 || ""} 
+          {...register("isUnder21")}
           onChange={handleChange}
         />
         </label>
@@ -85,7 +112,7 @@ const CreateProfileForm = () => {
                 className='formitem input experience'
           type="text" 
           name="experience" 
-          value={inputs.experience || ""} 
+          {...register("experience")}
           onChange={handleChange}
         />
         </label>

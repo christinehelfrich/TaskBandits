@@ -1,9 +1,10 @@
 import React from 'react'
+import ProfileList from '../organisms/ProfileList'
 
 const ProfilesPage = () => {
   return (
     <div>
-      PROFILES
+      <ProfileList></ProfileList>
     </div>
   )
 }

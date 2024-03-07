@@ -5,10 +5,16 @@ module.exports.getProfiles = async (req, res) => {
     res.send(profiles)
 }
 
-module.exports.saveProfile = (req, res) => {
-    const {profile} = req.body
+module.exports.getProfileById = async (req, res) => {
+    const {id} = req.params
+    const profile = await ProfileModel.findById(id)
+    res.send(profile)
+}
 
-    ProfileModel.create({profile})
+module.exports.saveProfile = (req, res) => {
+    const profile = req.body.profile
+
+    ProfileModel.create(profile)
     .then((data) => {
         console.log("Saved Successfully...")
         res.status(201).send(data)
