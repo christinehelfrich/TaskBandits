@@ -1,11 +1,11 @@
 import React from 'react'
-import CreateProfileForm from '../organisms/CreateProfileForm'
+import ProfileForm from '../organisms/ProfileForm'
 
 const CreateProfilePage = () => {
   return (
     <div>
       CREATE PROFILE
-      <CreateProfileForm></CreateProfileForm>
+      <ProfileForm isCreateMode={true}></ProfileForm>
     </div>
   )
 }

@@ -26,9 +26,9 @@ module.exports.saveProfile = (req, res) => {
 
 module.exports.updateProfile = (req, res) => {
     const {id} = req.params
-    const {profile} = req.body
+    const profile = req.body.profile
 
-    ProfileModel.findByIdAndUpdate(id, {profile})
+    ProfileModel.findByIdAndUpdate(id, profile)
     .then(() => res.send("Updated Successfully..."))
     .catch((err) => {
         console.log(err);
