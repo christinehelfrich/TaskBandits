@@ -39,7 +39,7 @@ module.exports.updateProfile = (req, res) => {
 module.exports.deleteProfile = (req, res) => {
     const {id} = req.params
 
-    ProfileModel.findByIdAnddelete(id)
+    ProfileModel.findByIdAndDelete(id)
     .then(() => res.send("Deleted Successfully..."))
     .catch((err) => {
         console.log(err);

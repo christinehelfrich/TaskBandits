@@ -34,6 +34,7 @@ form.createProfileForm {
   display: flex;
   flex-direction: column;
   text-align: left;
+  padding: 1rem;
 }
 
 form.createProfileForm textarea{
@@ -97,6 +98,25 @@ div.detailsCard p {
   width: 10rem;
   border-radius: .5rem;
   color: white;
+  opacity: .8;
+}
+
+.alert-warning {
+  background-color: rgb(249, 193, 62);
+  padding: .5rem;
+  width: 10rem;
+  border-radius: .5rem;
+  color: white;
+  opacity: .8;
+}
+
+.alert-success {
+  background-color: rgb(3, 68, 248);
+  padding: .8rem;
+  width: 20rem;
+  border-radius: .5rem;
+  color: white;
+  opacity: .8;
 }
 
 

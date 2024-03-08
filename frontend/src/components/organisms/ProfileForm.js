@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import axios from "axios";
 import { baseURL } from '../../utils/constant';
+import Alert from '../atoms/Alert';
 
 const ProfileForm = ({isCreateMode, profileData}) => {
+
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false)
 
     const {
         register,
@@ -24,24 +27,40 @@ const ProfileForm = ({isCreateMode, profileData}) => {
       });
 
     const handleChange = (event) => {
-      console.log('errors', errors)
     }
 
     const onClear = () => {
-      console.log('on clear')
-      //reset();
+      reset();
+      setShowSuccessMessage(true)
+      setTimeout(() => {
+        setShowSuccessMessage(false)
+      }, 2000)
+      
     }
 
     const onDelete = () => {
-      console.log('on delete')
+      console.log('profileData._id', profileData._id)
+      axios.delete(`${baseURL}/profile/${profileData._id}`)
+      .then((res) => {
+        reset();
+        setShowSuccessMessage(true)
+        setTimeout(() => {
+          setShowSuccessMessage(false)
+        }, 2000)
+      })
+
 
     }
    
     const onSubmit = (event) => {
-        console.log('on submit', event)
         if(isCreateMode) {
           axios.post(`${baseURL}/profile`, {profile: event}).then((res) => {
             console.log(res.data);
+            reset();
+            setShowSuccessMessage(true)
+            setTimeout(() => {
+              setShowSuccessMessage(false)
+            }, 2000)
           })
         } else {
           axios.put(`${baseURL}/profile/${profileData._id}`, {profile: event}).then((res) => {
@@ -53,6 +72,7 @@ const ProfileForm = ({isCreateMode, profileData}) => {
   return (
 
     <form className='createProfileForm' onSubmit={handleSubmit(onSubmit)}>
+      {showSuccessMessage && <Alert wording={`Success! Profile successfully ${isCreateMode ? 'Created' : 'Updated'}`} type={'success'}></Alert>}
 
 
       <label className='formitem label name'>Name:
@@ -67,7 +87,7 @@ const ProfileForm = ({isCreateMode, profileData}) => {
       />
       </label>
       {errors.name && (
-          <div className="alert-danger" role="alert">{errors.name.message}</div>
+          <Alert wording={errors.name.message} type={'danger'}></Alert>
           )}
 
 
@@ -81,7 +101,7 @@ const ProfileForm = ({isCreateMode, profileData}) => {
         />
         </label>
         {errors.bio && (
-          <div className="alert-danger" role="alert">{errors.area.bio}</div>
+          <Alert wording={errors.bio.message} type={'danger'}></Alert>
           )}
 
         <label className='formitem label photo'>Photo:
@@ -94,7 +114,7 @@ const ProfileForm = ({isCreateMode, profileData}) => {
         />
         </label>
         {errors.photo && (
-          <div className="alert-danger" role="alert">{errors.area.photo}</div>
+           <Alert wording={errors.photo.message} type={'danger'}></Alert>
           )}
 
         <label className='formitem label skills'>Skills:
@@ -107,7 +127,7 @@ const ProfileForm = ({isCreateMode, profileData}) => {
         />
         </label>
         {errors.skills && (
-          <div className="alert-danger" role="alert">{errors.area.skills}</div>
+          <Alert wording={errors.skills.message} type={'danger'}></Alert>
           )}
 
         <label className='formitem label hourlyWage'>Hourly wage:
@@ -122,7 +142,7 @@ const ProfileForm = ({isCreateMode, profileData}) => {
         />
         </label>
         {errors.hourlyWage && (
-          <div className="alert-danger" role="alert">{errors.hourlyWage.message}</div>
+          <Alert wording={errors.hourlyWage.message} type={'danger'}></Alert>
           )}
 
         <label className='formitem label area'>Area:
@@ -137,7 +157,7 @@ const ProfileForm = ({isCreateMode, profileData}) => {
         />
         </label>
         {errors.area && (
-          <div className="alert-danger" role="alert">{errors.area.message}</div>
+           <Alert wording={errors.area.message} type={'danger'}></Alert>
           )}
 
         <label className='formitem label isUnder21'>Is under the age of 21 years old:
@@ -150,7 +170,7 @@ const ProfileForm = ({isCreateMode, profileData}) => {
         />
         </label>
         {errors.isUnder21 && (
-          <div className="alert-danger" role="alert">{errors.isUnder21.message}</div>
+           <Alert wording={errors.isUnder21.message} type={'danger'}></Alert>
           )}
 
         <label className='formitem label experience'>Experience:
@@ -163,12 +183,13 @@ const ProfileForm = ({isCreateMode, profileData}) => {
         />
         </label>
         {errors.experience && (
-          <div className="alert-danger" role="alert">{errors.experience.message}</div>
+          <Alert wording={errors.experience.message} type={'danger'}></Alert>
           )}
 
 
         <input className='button-primary' type="submit" value={isCreateMode ? 'Submit' : 'Update Profile'} />
-        <button className='button-danger' onClick={isCreateMode ? onClear() : onDelete()}>{isCreateMode ? 'Clear' : 'Delete Profile'}</button>
+        <button className='button-danger' onClick={isCreateMode ? onClear : onDelete}>{isCreateMode ? 'Clear' : 'Delete Profile'}</button>
+        
     </form>
   )
 }
