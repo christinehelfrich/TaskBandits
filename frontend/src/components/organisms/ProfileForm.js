@@ -3,10 +3,13 @@ import { useForm } from 'react-hook-form';
 import axios from "axios";
 import { baseURL } from '../../utils/constant';
 import Alert from '../atoms/Alert';
+import Spinner from '../atoms/Spinner';
+import { Navigate, useNavigate } from "react-router-dom";
 
 const ProfileForm = ({isCreateMode, profileData}) => {
 
   const [showSuccessMessage, setShowSuccessMessage] = useState(false)
+  const [isLoading, setisLoading] = useState(false)
 
     const {
         register,
@@ -31,48 +34,50 @@ const ProfileForm = ({isCreateMode, profileData}) => {
 
     const onClear = () => {
       reset();
-      setShowSuccessMessage(true)
-      setTimeout(() => {
-        setShowSuccessMessage(false)
-      }, 2000)
+      resetFormAndPushSuccessMessage()
       
     }
 
     const onDelete = () => {
-      console.log('profileData._id', profileData._id)
+      setisLoading(true)
       axios.delete(`${baseURL}/profile/${profileData._id}`)
       .then((res) => {
-        reset();
-        setShowSuccessMessage(true)
-        setTimeout(() => {
-          setShowSuccessMessage(false)
-        }, 2000)
+        setisLoading(false)
+        resetFormAndPushSuccessMessage()
+        Navigate('/')
+        
       })
 
 
     }
    
     const onSubmit = (event) => {
+        setisLoading(true)
         if(isCreateMode) {
           axios.post(`${baseURL}/profile`, {profile: event}).then((res) => {
-            console.log(res.data);
-            reset();
-            setShowSuccessMessage(true)
-            setTimeout(() => {
-              setShowSuccessMessage(false)
-            }, 2000)
+            setisLoading(false)
+            resetFormAndPushSuccessMessage()
           })
         } else {
           axios.put(`${baseURL}/profile/${profileData._id}`, {profile: event}).then((res) => {
-            console.log(res.data);
+            setisLoading(false)
+            resetFormAndPushSuccessMessage()
           })
         }
+    }
 
+    const resetFormAndPushSuccessMessage = () => {
+      reset();
+      setShowSuccessMessage(true)
+      setTimeout(() => {
+        setShowSuccessMessage(false)
+      }, 2000)
     }
   return (
 
     <form className='createProfileForm' onSubmit={handleSubmit(onSubmit)}>
       {showSuccessMessage && <Alert wording={`Success! Profile successfully ${isCreateMode ? 'Created' : 'Updated'}`} type={'success'}></Alert>}
+      {isLoading && <Spinner></Spinner>}
 
 
       <label className='formitem label name'>Name:
