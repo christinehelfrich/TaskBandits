@@ -1,4 +1,5 @@
-const {Router} = require("express")
+const {Router} = require("express");
+const { login } = require("../controllers/AuthControllers");
 const {getProfiles, saveProfile, deleteProfile, updateProfile, getProfileById} = require("../controllers/ProfileControllers")
 
 const router = Router()
@@ -8,5 +9,6 @@ router.get("/profile/:id", getProfileById)
 router.post("/profile", saveProfile);
 router.put("/profile/:id", updateProfile)
 router.delete("/profile/:id", deleteProfile)
+router.post("/login", login)
 
 module.exports = router
