@@ -34,6 +34,10 @@ const profileSchema = new mongoose.Schema({
     isWorkerProfileType: {
         type: Boolean,
         required: true
+    },
+    isEmployerProfileType: {
+        type: Boolean,
+        required: true
     }
 
     

@@ -4,7 +4,7 @@ import axios from "axios";
 import { baseURL } from '../../utils/constant';
 import Alert from '../atoms/Alert';
 import Spinner from '../atoms/Spinner';
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const ProfileForm = ({isCreateMode, profileData}) => {
 
@@ -19,7 +19,8 @@ const ProfileForm = ({isCreateMode, profileData}) => {
         formState: { errors },
       } = useForm({
         defaultValues: {
-            isWorkerProfileType: isCreateMode ? false : profileData?.isWorkerProfileType,
+            isWorkerProfileType: isCreateMode ? true : profileData?.isWorkerProfileType,
+            isEmployerProfileType: isCreateMode ? false : profileData?.isEmployerProfileType,
             name: isCreateMode ? '' : profileData.name,
             email: isCreateMode ? '' : profileData.email,
             bio: isCreateMode ? '' : profileData.bio,
@@ -91,6 +92,19 @@ const ProfileForm = ({isCreateMode, profileData}) => {
         </label>
         {errors.isWorkerProfileType && (
            <Alert wording={errors.isWorkerProfileType.message} type={'danger'}></Alert>
+          )}
+
+<label className='formitem label isEmployerProfileType'>Is this a Worker profile type? :
+        <input 
+          className='formitem input isEmployerProfileType'
+          type="checkbox" 
+          name="isEmployerProfileType" 
+          {...register("isEmployerProfileType")}
+          onChange={handleChange}
+        />
+        </label>
+        {errors.isEmployerProfileType && (
+           <Alert wording={errors.isEmployerProfileType.message} type={'danger'}></Alert>
           )}
 
 

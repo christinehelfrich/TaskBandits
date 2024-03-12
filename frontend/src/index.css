@@ -67,6 +67,12 @@ form.createProfileForm textarea{
   
 }
 
+.formRow {
+  width: 25rem;
+  display: flex;
+  justify-content: space-between;
+}
+
 form.createProfileForm .formitem.input{
   margin: 1rem;
   padding: .5rem;
@@ -152,6 +158,12 @@ div.detailsCard p {
   border-radius: .5rem;
   color: white;
   opacity: .8;
+}
+
+.smalltext {
+  text-decoration: none;
+  font-size: .7rem;
+  display: inline-block;
 }
 
 
