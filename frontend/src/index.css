@@ -68,12 +68,12 @@ form.createProfileForm textarea{
 }
 
 .formRow {
-  width: 25rem;
+  width: 27rem;
   display: flex;
   justify-content: space-between;
 }
 
-form.createProfileForm .formitem.input{
+.createProfileForm .formitem.input{
   margin: 1rem;
   padding: .5rem;
   width: 15rem;
@@ -135,11 +135,13 @@ div.detailsCard p {
 
 .alert-danger {
   background-color: rgb(161, 70, 70);
-  padding: .5rem;
+  padding: .2rem;
   width: 10rem;
   border-radius: .5rem;
   color: white;
   opacity: .8;
+  text-align: center;
+  margin: .2rem;
 }
 
 .alert-warning {
@@ -153,11 +155,13 @@ div.detailsCard p {
 
 .alert-success {
   background-color: rgb(3, 68, 248);
-  padding: .8rem;
+  padding: .2rem;
   width: 20rem;
   border-radius: .5rem;
   color: white;
   opacity: .8;
+  text-align: center;
+  margin: .2rem;
 }
 
 .smalltext {

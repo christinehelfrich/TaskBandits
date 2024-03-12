@@ -1,18 +1,25 @@
-import React, { useState } from 'react'
+import axios from 'axios';
+import React, { useRef, useState } from 'react'
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { baseURL } from '../../utils/constant';
 import Alert from '../atoms/Alert';
 
 const SignUpPage = () => {
 
     const [isWorker, setIsWorker] = useState(true)
     const [page, setPage] = useState(1)
+    const [showSuccessMessage, setShowSuccessMessage] = useState(false)
+    const [isLoading, setisLoading] = useState(false)
+    const navigate = useNavigate();
+    
 
     const {
         register,
         handleSubmit,
         setValue,
         formState: { errors },
+        watch
       } = useForm({
         defaultValues: {
             isWorkerProfileType: isWorker,
@@ -26,8 +33,12 @@ const SignUpPage = () => {
             area:  '',
             isUnder21: false,
             experience:  '',
+            password:  '',
         }
       });
+
+      const password = useRef({});
+      password.current = watch("password", "");
 
 
 
@@ -39,7 +50,12 @@ const SignUpPage = () => {
         setPage(1)
     }
 
-    const onCreate = () => {
+    const onCreate = (event) => {
+        setisLoading(true)
+        axios.post(`${baseURL}/profile`, {profile: event}).then((res) => {
+            setisLoading(false)
+            navigate("/login", {state: {showCreateSuccess: true}})
+          })
     }
 
     const onChangeRole = () => {
@@ -101,10 +117,10 @@ const SignUpPage = () => {
             </div>
             
             <div className='formRow'>
-              <label className='formitem label name'>Email:</label>
+              <label className='formitem label email'>Email:</label>
               <input 
                 className='formitem input email'
-                type="text" 
+                type="email" 
                 name="email" 
                 {...register("email", {
                   required: "Email is Required"
@@ -221,9 +237,49 @@ const SignUpPage = () => {
                   )}
                   </div>
                   </>)}
+
+            <div className='formRow'>
+                <label className='formitem label password'>Password:</label>
+                <input 
+                className='formitem input password'
+                type="password" 
+                name="password" 
+                {...register("password", {
+                  required: "Password is Required",
+                  minLength: {
+                    value: 8,
+                    message: "Password must have at least 8 characters"
+                  },
+                  pattern: {
+                    value: /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/,
+                    message: "Password must have at least a symbol, upper and lower case letters and a number"
+                  }
+                })}
+                />
+
+                {errors.password && (
+                  <Alert wording={errors.password?.message} type={'danger'}></Alert>
+                  )}
+            </div>
+
+            <div className='formRow'>
+                <label className='formitem label passwordRetype'>Retype Password:</label>
+                <input 
+                className='formitem input passwordRetype'
+                type="password" 
+                name="passwordRetype" 
+                {...register("passwordRetype", {          
+                    validate: value =>
+                    value === password.current || "The passwords do not match"})}
+                />
+
+                {errors.passwordRetype && (
+                  <Alert wording={errors.passwordRetype?.message} type={'danger'}></Alert>
+                  )}
+            </div>
                 
                                 <button className='button-secondary' onClick={onPageTwoToOne}>Back</button>  
-                                <input type="submit" className='button-primary' onClick={onPageTwoToOne} /> 
+                                <input type="submit" className='button-primary' /> 
                     </div>
                 )}
         </form>

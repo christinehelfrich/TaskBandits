@@ -4,21 +4,29 @@ import Alert from '../atoms/Alert'
 
 const HomePage = () => {
   const {state} = useLocation()
-  const [showSuccessMessage, setShowSuccessMessage] = useState(false)
+  const [showDeleteSuccessMessage, setShowDeleteSuccessMessage] = useState(false)
+  const [showCreateSuccessMessage, setShowCreateSuccessMessage] = useState(false)
 
   useEffect(() => {
-    console.log({state})
+      
     if(state?.showDeleteSuccess){
-        setShowSuccessMessage(true)
+        setShowDeleteSuccessMessage(true)
       setTimeout(() => {
-        setShowSuccessMessage(false)
+        setShowDeleteSuccessMessage(false)
       }, 2000)
     }
+    if(state?.showCreateSuccess){
+      setShowCreateSuccessMessage(true)
+    setTimeout(() => {
+      setShowCreateSuccessMessage(false)
+    }, 2000)
+  }
 
   }, [state])
   return (
     <div>
-            {showSuccessMessage && <Alert wording={`Success! Profile successfully Deleted`} type={'success'}></Alert>}
+            {showDeleteSuccessMessage && <Alert wording={`Success! Profile successfully Deleted`} type={'success'}></Alert>}
+            {showCreateSuccessMessage && <Alert wording={`Success! Profile successfully Created`} type={'success'}></Alert>}
       HOME
     </div>
   )

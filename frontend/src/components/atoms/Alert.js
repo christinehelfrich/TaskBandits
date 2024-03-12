@@ -3,7 +3,7 @@ import React from 'react'
 const Alert = ({type, wording}) => {
   return (
     <div role="alert" className={'alert-' + type}>
-      {wording}
+      <p className='smalltext'>{wording}</p>
     </div>
   )
 }

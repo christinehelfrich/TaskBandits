@@ -38,6 +38,10 @@ const profileSchema = new mongoose.Schema({
     isEmployerProfileType: {
         type: Boolean,
         required: true
+    },
+    password: {
+        type: String,
+        required: true
     }
 
     
