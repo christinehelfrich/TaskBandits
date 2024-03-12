@@ -1,5 +1,4 @@
 main {
-  margin: 2rem;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -10,27 +9,53 @@ main {
   justify-content: center;
 }
 
-.navbar h1 {
-  font-size: 3em;
+nav.navbar {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: rgb(222, 227, 241);
+  margin-bottom: 2rem;
+}
+
+nav.navbar ul {
+  list-style: none;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: .8rem;
+}
+
+.navbar div.titleLogo {
+  margin-left: 1rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.navbar div.titleLogo h1 {
+  font-size: 1.5em;
   font-weight: 200;
   color: rgb(81, 103, 164);
 }
 
-.navbar button.homeButton {
-  margin: 1rem;
-  width: 120px;
-  background-color: rgb(81, 103, 164);
-  color: white;
-  border: none;
-  border-radius: .5rem;
-  
+.navbar .homeButton {
+  margin-right: 1rem;
+  text-decoration: none;
 }
 
-.navbar button.homeButton p {
+.navLink {
+  text-decoration: none;
   color: white;
 }
 
-form.createProfileForm {
+.navbar .homeButton p {
+  color: black;
+}
+
+.createProfileForm {
   display: flex;
   flex-direction: column;
   text-align: left;
@@ -60,7 +85,7 @@ form.createProfileForm .formitem.label{
 
 .button-primary {
   margin: 1rem;
-  width: 10rem;
+  width: 8rem;
   background-color: rgb(81, 103, 164);
   color: white;
   border: none;
@@ -71,8 +96,18 @@ form.createProfileForm .formitem.label{
 
 .button-danger {
   margin: 1rem;
-  width: 10rem;
+  width: 8rem;
   background-color: rgb(161, 70, 70);
+  color: white;
+  border: none;
+  border-radius: .5rem;
+  padding: .5rem;
+}
+
+.button-secondary {
+  margin: 1rem;
+  width: 8rem;
+  background-color: rgb(155, 161, 177);
   color: white;
   border: none;
   border-radius: .5rem;

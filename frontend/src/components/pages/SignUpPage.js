@@ -1,99 +1,82 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
-import axios from "axios";
-import { baseURL } from '../../utils/constant';
 import Alert from '../atoms/Alert';
-import Spinner from '../atoms/Spinner';
-import { Link, Navigate, useNavigate } from "react-router-dom";
 
-const ProfileForm = ({isCreateMode, profileData}) => {
+const SignUpPage = () => {
 
-  const [showSuccessMessage, setShowSuccessMessage] = useState(false)
-  const [isLoading, setisLoading] = useState(false)
-  const navigate = useNavigate();
+    const [isWorker, setIsWorker] = useState(true)
+    const [page, setPage] = useState(1)
 
     const {
         register,
         handleSubmit,
         reset,
+        setValue,
         formState: { errors },
       } = useForm({
         defaultValues: {
-            isWorkerProfileType: isCreateMode ? false : profileData?.isWorkerProfileType,
-            name: isCreateMode ? '' : profileData.name,
-            email: isCreateMode ? '' : profileData.email,
-            bio: isCreateMode ? '' : profileData.bio,
-            photo: isCreateMode ? '' : profileData.photo,
-            skills: isCreateMode ? '' : profileData.skills,
-            hourlyWage: isCreateMode ? '' : profileData.hourlyWage,
-            area: isCreateMode ? '' : profileData.area,
-            isUnder21: isCreateMode ? false : profileData.isUnder21,
-            experience: isCreateMode ? '' : profileData.experience
+            isWorkerProfileType: false,
+            name:  '',
+            email: '',
+            bio: '',
+            photo: '',
+            skills: '',
+            hourlyWage: '',
+            area:  '',
+            isUnder21: false,
+            experience:  '',
         }
       });
 
-    const handleChange = (event) => {
-    }
-
-    const onClear = () => {
-      reset();
-    }
-
-    const onDelete = () => {
-      setisLoading(true)
-      axios.delete(`${baseURL}/profile/${profileData._id}`)
-      .then((res) => {
-        setisLoading(false)
-        resetFormAndPushSuccessMessage()
-        navigate("/", {state: {showDeleteSuccess: true}})
-        
-      })
 
 
-    }
-   
-    const onSubmit = (event) => {
-        setisLoading(true)
-        if(isCreateMode) {
-          axios.post(`${baseURL}/profile`, {profile: event}).then((res) => {
-            setisLoading(false)
-            resetFormAndPushSuccessMessage()
-          })
-        } else {
-          axios.put(`${baseURL}/profile/${profileData._id}`, {profile: event}).then((res) => {
-            setisLoading(false)
-            resetFormAndPushSuccessMessage()
-          })
-        }
+    const onPageOneToTwo = () => {
+        setPage(2)
     }
 
-    const resetFormAndPushSuccessMessage = () => {
-      reset();
-      setShowSuccessMessage(true)
-      setTimeout(() => {
-        setShowSuccessMessage(false)
-      }, 2000)
+    const onPageTwoToOne = () => {
+        setPage(1)
     }
+
+    const onCreate = () => {
+    }
+
+    const onChangeRole = () => {
+        setIsWorker(!isWorker)
+        console.log('changed', isWorker)
+        setValue("isWorkerProfileType", !isWorker)
+    }
+
   return (
+    <div>
+        <h2>Sign Up</h2>
+        <form onSubmit={handleSubmit(onCreate)} className='createProfileForm'>
 
-    <form className='createProfileForm' onSubmit={handleSubmit(onSubmit)}>
-      {showSuccessMessage && <Alert wording={`Success! Profile successfully ${isCreateMode ? 'Created' : 'Updated'}`} type={'success'}></Alert>}
-      {isLoading && <Spinner></Spinner>}
+        {page === 1 && (
+        <div>
 
-      <label className='formitem label isWorkerProfileType'>Is this a Worker profile type? :
+        <p>Are you signing up as a prospective:</p>
+        <label>Worker</label>
         <input 
-          className='formitem input isWorkerProfileType'
-          type="checkbox" 
-          name="isWorkerProfileType" 
+        type="checkbox"
+        name="isWorkerProfileType" 
           {...register("isWorkerProfileType")}
-          onChange={handleChange}
-        />
-        </label>
-        {errors.isWorkerProfileType && (
-           <Alert wording={errors.isWorkerProfileType.message} type={'danger'}></Alert>
-          )}
+          onChange={onChangeRole}/>
+        <br></br>
+        <label>Employer</label>
+        <input 
+        type="checkbox"
+        onChange={onChangeRole}
+        value={isWorker}/>
+        <br></br>
+        <button className='button-primary' onClick={onPageOneToTwo}>Next</button>     
+        </div>        
+        )}
 
 
+
+        {page === 2 && (
+            <div className='createProfileForm'> <h3>PAGE TWO</h3>
       <label className='formitem label name'>Name:
       <input 
         className='formitem input name'
@@ -102,7 +85,6 @@ const ProfileForm = ({isCreateMode, profileData}) => {
         {...register("name", {
           required: "Name is Required"
         })}
-        onChange={handleChange}
       />
       </label>
       {errors.name && (
@@ -118,7 +100,6 @@ const ProfileForm = ({isCreateMode, profileData}) => {
         {...register("email", {
           required: "Email is Required"
         })}
-        onChange={handleChange}
       />
       </label>
       {errors.email && (
@@ -132,7 +113,6 @@ const ProfileForm = ({isCreateMode, profileData}) => {
           type="text" 
           name="bio" 
           {...register("bio")}
-          onChange={handleChange}
         />
         </label>
         {errors.bio && (
@@ -145,7 +125,6 @@ const ProfileForm = ({isCreateMode, profileData}) => {
           type="text" 
           name="photo" 
           {...register("photo")}
-          onChange={handleChange}
         />
         </label>
         {errors.photo && (
@@ -158,7 +137,6 @@ const ProfileForm = ({isCreateMode, profileData}) => {
           type="text" 
           name="skills" 
           {...register("skills")}
-          onChange={handleChange}
         />
         </label>
         {errors.skills && (
@@ -171,7 +149,6 @@ const ProfileForm = ({isCreateMode, profileData}) => {
           type="text" 
           name="hourlyWage" 
           {...register("hourlyWage")}
-          onChange={handleChange}
         />
         </label>
         {errors.hourlyWage && (
@@ -186,7 +163,6 @@ const ProfileForm = ({isCreateMode, profileData}) => {
           {...register("area", {
             required: "Area is Required"
         })}
-          onChange={handleChange}
         />
         </label>
         {errors.area && (
@@ -199,7 +175,6 @@ const ProfileForm = ({isCreateMode, profileData}) => {
           type="checkbox" 
           name="isUnder21" 
           {...register("isUnder21")}
-          onChange={handleChange}
         />
         </label>
         {errors.isUnder21 && (
@@ -212,21 +187,18 @@ const ProfileForm = ({isCreateMode, profileData}) => {
           type="text" 
           name="experience" 
           {...register("experience")}
-          onChange={handleChange}
         />
         </label>
         {errors.experience && (
           <Alert wording={errors.experience.message} type={'danger'}></Alert>
           )}
-
-        <div>
-        <input className='button-primary' type="submit" value={isCreateMode ? 'Submit' : 'Update Profile'} />
-        <button className='button-danger' onClick={isCreateMode ? onClear : onDelete}>{isCreateMode ? 'Clear' : 'Delete Profile'}</button>
-        <button className='button-secondary'><Link className='navLink' to={'/'}>Back</Link></button>
-        </div>
-        
-    </form>
+                        <button className='button-secondary' onClick={onPageTwoToOne}>Back</button>  
+                        <input type="submit" className='button-primary' onClick={onPageTwoToOne} /> 
+            </div>
+        )}
+        </form>
+    </div>
   )
 }
 
-export default ProfileForm
+export default SignUpPage

@@ -5,6 +5,10 @@ const profileSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    email: {
+        type: String,
+        required: true
+    },
     bio: {
         type: String
     },
@@ -15,19 +19,21 @@ const profileSchema = new mongoose.Schema({
         type: Array
     },
     hourlyWage: {
-        type: String,
-        required: true
+        type: String
     },
     area: {
         type: String,
         required: true
     },
     isUnder21: {
-        type: Boolean,
-        required: true
+        type: Boolean
     },
     experience: {
         type: String,
+    },
+    isWorkerProfileType: {
+        type: Boolean,
+        required: true
     }
 
     
