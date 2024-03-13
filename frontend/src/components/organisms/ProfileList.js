@@ -10,7 +10,6 @@ const ProfileList = () => {
     useEffect(() => {
         axios.get(`${baseURL}/profiles`)
         .then((res) => {
-            console.log(res.data)
             setProfiles(res.data)
         })
     }, [])

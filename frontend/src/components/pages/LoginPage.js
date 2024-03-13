@@ -4,12 +4,15 @@ import { useForm } from 'react-hook-form';
 import { Link, useLocation } from 'react-router-dom'
 import axios from 'axios';
 import { baseURL } from '../../utils/constant';
+import { useDispatch } from 'react-redux'
+import { updateUser } from '../../redux/userSlice';
 
 const LoginPage = () => {
   const {state} = useLocation()
   const [showCreateSuccessMessage, setShowCreateSuccessMessage] = useState(false)
   const [successMessage, setSuccessMessage] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
+  const dispatch = useDispatch()
 
   const {
     register,
@@ -31,10 +34,9 @@ const LoginPage = () => {
   }}, [state])
 
   const onCreate = (event) => {
-    console.log('on submit', event)
     axios.post(`${baseURL}/login`, event)
     .then((res) => {
-        console.log(res)
+        dispatch(updateUser({user: res.data.user, isAuthenticated: true}))
         setSuccessMessage(`Log In Successful. Welcome, ${res.data.user.name}`)
         setTimeout(() => {
           setSuccessMessage('')

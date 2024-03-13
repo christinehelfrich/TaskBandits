@@ -7,7 +7,6 @@ const GuardedRoute = ({ children }) => {
         return state.user.user
     });
     let location = useLocation();
-    console.log(user)
 
     if(!user.isAuthenticated) {
         return <Navigate to="/login" state={{ from: location}} replace/>
