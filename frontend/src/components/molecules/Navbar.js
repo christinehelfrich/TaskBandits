@@ -24,6 +24,7 @@ const Navbar = () => {
       {!user.isAuthenticated && <li className='homeButton'><Link className='navLink' to={'/signup'}><p>Sign Up</p></Link></li>}
       {user.isAuthenticated && <li className='homeButton'><Link className='navLink' to={'/create-new-profile'}><p>Create a Profile</p></Link></li> }
       {user.isAuthenticated && <li className='homeButton'><Link className='navLink' to={'/profiles'}><p>View all Profiles</p></Link></li> }
+      {user.isAuthenticated && <li className='homeButton'><Link className='navLink' to={'/profile'}><p>My Profile</p></Link></li> }
       {user.isAuthenticated && <li className='homeButton' ><Link onClick={onLogout} className='navLink' to={'/login'}><p>Logout</p></Link></li> }
       </ul>
     </nav>

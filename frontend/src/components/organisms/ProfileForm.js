@@ -81,32 +81,6 @@ const ProfileForm = ({isCreateMode, profileData}) => {
       {showSuccessMessage && <Alert wording={`Success! Profile successfully ${isCreateMode ? 'Created' : 'Updated'}`} type={'success'}></Alert>}
       {isLoading && <Spinner></Spinner>}
 
-      <label className='formitem label isWorkerProfileType'>Is this a Worker profile type? :
-        <input 
-          className='formitem input isWorkerProfileType'
-          type="checkbox" 
-          name="isWorkerProfileType" 
-          {...register("isWorkerProfileType")}
-          onChange={handleChange}
-        />
-        </label>
-        {errors.isWorkerProfileType && (
-           <Alert wording={errors.isWorkerProfileType.message} type={'danger'}></Alert>
-          )}
-
-<label className='formitem label isEmployerProfileType'>Is this a Worker profile type? :
-        <input 
-          className='formitem input isEmployerProfileType'
-          type="checkbox" 
-          name="isEmployerProfileType" 
-          {...register("isEmployerProfileType")}
-          onChange={handleChange}
-        />
-        </label>
-        {errors.isEmployerProfileType && (
-           <Alert wording={errors.isEmployerProfileType.message} type={'danger'}></Alert>
-          )}
-
 
       <label className='formitem label name'>Name:
       <input 

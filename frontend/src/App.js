@@ -8,6 +8,7 @@ import CreateProfilePage from './components/pages/CreateProfilePage';
 import HomePage from './components/pages/HomePage';
 import LoginPage from './components/pages/LoginPage';
 import ProfileDetailsPage from './components/pages/ProfileDetailsPage';
+import ProfilePage from './components/pages/ProfilePage';
 import ProfilesPage from './components/pages/ProfilesPage';
 import SignUpPage from './components/pages/SignUpPage';
 import GuardedRoute from './components/util/GuardedRoute';
@@ -22,6 +23,11 @@ const App = () => {
            <Route path="/" element={<HomePage />} />
            <Route path="/login" element={<LoginPage />} />
            <Route path="/signup" element={<SignUpPage />} />
+           <Route path="/profile" element={
+            <GuardedRoute>          
+              <ProfilePage />
+            </GuardedRoute>
+           } />
            <Route path="/profiles" element={
             <GuardedRoute>          
               <ProfilesPage />
