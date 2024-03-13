@@ -4,12 +4,13 @@ import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { baseURL } from '../../utils/constant';
 import Alert from '../atoms/Alert';
+import Spinner from '../atoms/Spinner';
 
 const SignUpPage = () => {
 
     const [isWorker, setIsWorker] = useState(true)
     const [page, setPage] = useState(1)
-    const [showSuccessMessage, setShowSuccessMessage] = useState(false)
+    // const [showSuccessMessage, setShowSuccessMessage] = useState(false)
     const [isLoading, setisLoading] = useState(false)
     const navigate = useNavigate();
     
@@ -68,7 +69,8 @@ const SignUpPage = () => {
   return (
     <div>
         <h2>Sign Up</h2>
-        <p className='smalltext'>Already have an account? <Link className='smalltext' to={'/login'}><p >Log In</p></Link></p>
+        <p className='smalltext'>Already have an account? <Link className='smalltext' to={'/login'}>Log In</Link></p>
+        {isLoading && <Spinner></Spinner>}
         <form onSubmit={handleSubmit(onCreate)} className='createProfileForm'>
 
         {page === 1 && (

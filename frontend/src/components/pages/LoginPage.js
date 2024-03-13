@@ -53,8 +53,8 @@ const LoginPage = () => {
     <div>
         <h2>Log In</h2>
         {showCreateSuccessMessage && <Alert wording={`Success! Profile successfully Created. Use your new credentials to log in.`} type={'success'}></Alert>}
-        {errorMessage != '' && <Alert wording={errorMessage} type={'danger'}></Alert>}
-        {successMessage != '' && <Alert wording={successMessage} type={'success'}></Alert>}
+        {errorMessage !== '' && <Alert wording={errorMessage} type={'danger'}></Alert>}
+        {successMessage !== '' && <Alert wording={successMessage} type={'success'}></Alert>}
         <p className='smalltext'>Don't have an account? <Link className='smalltext' to={'/signup'}>Sign Up</Link></p>
 
         <form onSubmit={handleSubmit(onCreate)} className='createProfileForm'>
