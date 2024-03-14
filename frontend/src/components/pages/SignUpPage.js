@@ -1,12 +1,9 @@
 import axios from 'axios';
-import React, { useRef, useState } from 'react'
-import { useForm } from 'react-hook-form';
+import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { baseURL } from '../../utils/constant';
-import Alert from '../atoms/Alert';
 import Spinner from '../atoms/Spinner';
 import ProfileDataForm from '../molecules/ProfileDataForm';
-import ProfileForm from '../organisms/ProfileForm';
 
 const SignUpPage = () => {
 
