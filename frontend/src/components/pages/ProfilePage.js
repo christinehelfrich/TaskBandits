@@ -6,7 +6,7 @@ const ProfilePage = () => {
     const user = useSelector((state) => {
       return state.user.user
       });
-      console.log(user)
+      
   return (
     <div>
       profile!

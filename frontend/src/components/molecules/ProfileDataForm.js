@@ -13,9 +13,10 @@ const ProfileDataForm = ({defaultFormValues, onSubmit, isCreateMode, onDelete}) 
       } = useForm({
         defaultValues: defaultFormValues
       });
-    const onReset = () => {
-        reset();
-      }
+    const onClear = () => {
+      console.log('clear')
+      reset();
+    }
 
   return (
     <form className='createProfileForm' onSubmit={handleSubmit(onSubmit)}>
@@ -157,9 +158,9 @@ const ProfileDataForm = ({defaultFormValues, onSubmit, isCreateMode, onDelete}) 
 
         <div>
         <input className='button-primary' type="submit" value={isCreateMode ? 'Submit' : 'Update Profile'} />
-        <button className='button-danger' onClick={onReset}>Clear</button>
-        <button className='button-danger' onClick={onDelete}>Delete Profile</button>
-        <button className='button-secondary'><Link className='navLink' to={'/'}>Back</Link></button>
+        <button className='button-danger' type="button" onClick={onClear}>{isCreateMode ? 'Clear' : 'Revert'}</button>
+        <button className='button-danger' type="button" onClick={onDelete}>Delete Profile</button>
+        <button className='button-secondary' type="button"><Link className='navLink' to={'/'}>Back</Link></button>
         </div>
         
     </form>

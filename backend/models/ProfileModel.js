@@ -42,6 +42,10 @@ const profileSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true
+    },
+    isSuperUser: {
+        type: Boolean,
+        default: false
     }
 
     

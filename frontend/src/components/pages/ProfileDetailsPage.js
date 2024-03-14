@@ -12,7 +12,6 @@ const ProfileDetailsPage = () => {
     useEffect(() => {
         axios.get(`${baseURL}/profile/${id}`)
         .then((res) => {
-            console.log(res)
             setProfile(res.data)
             setProfileIsLoading(false)
         })

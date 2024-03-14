@@ -11,7 +11,8 @@ import ProfileDetailsPage from './components/pages/ProfileDetailsPage';
 import ProfilePage from './components/pages/ProfilePage';
 import ProfilesPage from './components/pages/ProfilesPage';
 import SignUpPage from './components/pages/SignUpPage';
-import GuardedRoute from './components/util/GuardedRoute';
+import AuthGuardedRoute from './components/auth/AuthGuardedRoute';
+import SuperUserGuardedRoute from './components/auth/SuperUserGuardedRoute';
 
 const App = () => {
   return (
@@ -24,24 +25,26 @@ const App = () => {
            <Route path="/login" element={<LoginPage />} />
            <Route path="/signup" element={<SignUpPage />} />
            <Route path="/profile" element={
-            <GuardedRoute>          
+            <AuthGuardedRoute>          
               <ProfilePage />
-            </GuardedRoute>
+            </AuthGuardedRoute>
            } />
            <Route path="/profiles" element={
-            <GuardedRoute>          
-              <ProfilesPage />
-            </GuardedRoute>
+            <AuthGuardedRoute> 
+              <SuperUserGuardedRoute>
+                <ProfilesPage />
+              </SuperUserGuardedRoute>         
+            </AuthGuardedRoute>
            } />
            <Route path="/create-new-profile" element={
-             <GuardedRoute>          
+             <AuthGuardedRoute>          
               <CreateProfilePage />
-              </GuardedRoute>
+              </AuthGuardedRoute>
             } />
            <Route path="/profile-details/:id" element={
-            <GuardedRoute>   
+            <AuthGuardedRoute>   
              <ProfileDetailsPage />
-             </GuardedRoute>} />
+             </AuthGuardedRoute>} />
         </Routes>
 
     </main>

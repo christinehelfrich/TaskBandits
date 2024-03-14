@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Alert from '../atoms/Alert'
 import { useForm } from 'react-hook-form';
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import { baseURL } from '../../utils/constant';
 import { useDispatch } from 'react-redux'
@@ -13,6 +13,7 @@ const LoginPage = () => {
   const [successMessage, setSuccessMessage] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const {
     register,
@@ -37,10 +38,7 @@ const LoginPage = () => {
     axios.post(`${baseURL}/login`, event)
     .then((res) => {
         dispatch(updateUser({user: res.data.user, isAuthenticated: true}))
-        setSuccessMessage(`Log In Successful. Welcome, ${res.data.user.name}`)
-        setTimeout(() => {
-          setSuccessMessage('')
-        }, 5000)
+        navigate("/", {state: {showLoginSuccess: true}})
     })
     .catch((err) => {
       setErrorMessage(err.response.data.msg)
