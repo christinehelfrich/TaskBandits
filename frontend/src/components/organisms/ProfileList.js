@@ -3,16 +3,8 @@ import axios from "axios";
 import { baseURL } from '../../utils/constant';
 import ProfileCard from '../molecules/ProfileCard';
 
-const ProfileList = () => {
+const ProfileList = ({profiles}) => {
 
-    const [profiles, setProfiles] = useState([])
-
-    useEffect(() => {
-        axios.get(`${baseURL}/profiles`)
-        .then((res) => {
-            setProfiles(res.data)
-        })
-    }, [])
 
   return (
     <div>

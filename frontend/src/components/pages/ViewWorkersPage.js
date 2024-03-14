@@ -3,13 +3,17 @@ import React, { useEffect, useState } from 'react'
 import { baseURL } from '../../utils/constant'
 import ProfileList from '../organisms/ProfileList'
 
-const ProfilesPage = () => {
+const ViewWorkersPage = () => {
   const [profiles, setProfiles] = useState([])
 
   useEffect(() => {
       axios.get(`${baseURL}/profiles`)
       .then((res) => {
-          setProfiles(res.data)
+        let workers = res.data.filter((p) => {
+          console.log(typeof p._id)
+          return p.isWorkerProfileType
+        })
+          setProfiles(workers)
       })
   }, [])
   return (
@@ -19,4 +23,4 @@ const ProfilesPage = () => {
   )
 }
 
-export default ProfilesPage
+export default ViewWorkersPage

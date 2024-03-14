@@ -4,7 +4,6 @@ import {
   Route,
 } from "react-router-dom";
 import Navbar from './components/molecules/Navbar';
-import CreateProfilePage from './components/pages/CreateProfilePage';
 import HomePage from './components/pages/HomePage';
 import LoginPage from './components/pages/LoginPage';
 import ProfileDetailsPage from './components/pages/ProfileDetailsPage';
@@ -13,6 +12,7 @@ import ProfilesPage from './components/pages/ProfilesPage';
 import SignUpPage from './components/pages/SignUpPage';
 import AuthGuardedRoute from './components/auth/AuthGuardedRoute';
 import SuperUserGuardedRoute from './components/auth/SuperUserGuardedRoute';
+import ViewWorkersPage from './components/pages/ViewWorkersPage';
 
 const App = () => {
   return (
@@ -36,11 +36,11 @@ const App = () => {
               </SuperUserGuardedRoute>         
             </AuthGuardedRoute>
            } />
-           <Route path="/create-new-profile" element={
-             <AuthGuardedRoute>          
-              <CreateProfilePage />
-              </AuthGuardedRoute>
-            } />
+            <Route path="/all-workers" element={
+            <AuthGuardedRoute>          
+              <ViewWorkersPage />
+            </AuthGuardedRoute>
+           } />
            <Route path="/profile-details/:id" element={
             <AuthGuardedRoute>   
              <ProfileDetailsPage />
