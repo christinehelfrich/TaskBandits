@@ -34,7 +34,7 @@ const HomePage = () => {
   return (
     <div>
             {showDeleteSuccessMessage && <Alert wording={`Success! Profile successfully Deleted`} type={'success'}></Alert>}
-            {showCreateSuccessMessage && <Alert wording={`Success! Profile successfully Created`} type={'success'}></Alert>}
+            {showCreateSuccessMessage && <Alert wording={`Success! Task successfully created`} type={'success'}></Alert>}
             {showLoginSuccessMessage && <Alert wording={`Success! Successfully logged in`} type={'success'}></Alert>}
       HOME
     </div>

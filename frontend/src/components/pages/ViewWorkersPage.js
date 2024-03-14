@@ -10,7 +10,6 @@ const ViewWorkersPage = () => {
       axios.get(`${baseURL}/profiles`)
       .then((res) => {
         let workers = res.data.filter((p) => {
-          console.log(typeof p._id)
           return p.isWorkerProfileType
         })
           setProfiles(workers)

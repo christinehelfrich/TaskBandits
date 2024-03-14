@@ -7,8 +7,6 @@ import ProfileDataForm from '../molecules/ProfileDataForm';
 
 const SignUpPage = () => {
 
-    const [isWorker, setIsWorker] = useState(true)
-    const [page, setPage] = useState(1)
     const [isLoading, setisLoading] = useState(false)
     const navigate = useNavigate();
 

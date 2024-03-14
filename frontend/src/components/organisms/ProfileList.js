@@ -1,6 +1,4 @@
-import React, {useEffect, useState } from 'react';
-import axios from "axios";
-import { baseURL } from '../../utils/constant';
+import React from 'react';
 import ProfileCard from '../molecules/ProfileCard';
 
 const ProfileList = ({profiles}) => {
