@@ -1,27 +1,74 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import Alert from '../atoms/Alert';
 
 const ProfileDataForm = ({defaultFormValues, onSubmit, isCreateMode, onDelete}) => {
 
+  const [isWorker, setIsWorker] = useState(isCreateMode ? true : defaultFormValues?.isWorkerProfileType)
+  const [page, setPage] = useState(isCreateMode ? 1 : 2)
     const {
         register,
         handleSubmit,
         reset,
+        setValue,
+        watch,
         formState: { errors },
       } = useForm({
         defaultValues: defaultFormValues
       });
+
+    const password = useRef({});
+    password.current = watch("password", "");
+
+
     const onClear = () => {
       console.log('clear')
       reset();
     }
 
+    const onPageOneToTwo = () => {
+      setPage(2)
+    }
+
+    const onPageTwoToOne = () => {
+        setPage(1)
+    }
+
+    const onChangeRole = () => {
+      setValue("isWorkerProfileType", !isWorker)
+      setValue("isEmployerProfileType", isWorker)
+      setIsWorker(!isWorker)  
+  }
+    console.log('defaultFormValues', defaultFormValues)
+
   return (
     <form className='createProfileForm' onSubmit={handleSubmit(onSubmit)}>
 
+{page === 1 && (
+        <div>
 
+        <p>Are you signing up as a prospective:</p>
+            <label>Worker</label>
+            <input 
+            type="checkbox"
+            name="isWorkerProfileType" 
+              {...register("isWorkerProfileType")}
+              onChange={onChangeRole}/>
+            <br></br>
+            <label>Employer</label>
+            <input 
+            type="checkbox"
+            name="isEmployerProfileType" 
+            {...register("isEmployerProfileType")}
+            onChange={onChangeRole}/>
+            <br></br>
+        <button className='button-primary' onClick={onPageOneToTwo}>Next</button>     
+        </div>        
+        )}
+
+{page === 2 && (
+  <div>
       <div className='formRow'>
               <label className='formitem label name'>Name:</label>
                 <input 
@@ -156,13 +203,58 @@ const ProfileDataForm = ({defaultFormValues, onSubmit, isCreateMode, onDelete}) 
                   )}
         </div>
 
+        {isCreateMode && (
+          <>
+            <div className='formRow'>
+                <label className='formitem label password'>Password:</label>
+                <input 
+                className='formitem input password'
+                type="password" 
+                name="password" 
+                {...register("password", {
+                  required: "Password is Required",
+                  minLength: {
+                    value: 8,
+                    message: "Password must have at least 8 characters"
+                  },
+                  pattern: {
+                    value: /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/,
+                    message: "Password must have at least a symbol, upper and lower case letters and a number"
+                  }
+                })}
+                />
+
+                {errors.password && (
+                  <Alert wording={errors.password?.message} type={'danger'}></Alert>
+                  )}
+            </div>
+
+            <div className='formRow'>
+                <label className='formitem label passwordRetype'>Retype Password:</label>
+                <input 
+                className='formitem input passwordRetype'
+                type="password" 
+                name="passwordRetype" 
+                {...register("passwordRetype", {          
+                    validate: value =>
+                    value === password.current || "The passwords do not match"})}
+                />
+
+                {errors.passwordRetype && (
+                  <Alert wording={errors.passwordRetype?.message} type={'danger'}></Alert>
+                  )}
+            </div>
+          </>
+        )}
+
         <div>
         <input className='button-primary' type="submit" value={isCreateMode ? 'Submit' : 'Update Profile'} />
         <button className='button-danger' type="button" onClick={onClear}>{isCreateMode ? 'Clear' : 'Revert'}</button>
         <button className='button-danger' type="button" onClick={onDelete}>Delete Profile</button>
         <button className='button-secondary' type="button"><Link className='navLink' to={'/'}>Back</Link></button>
         </div>
-        
+        </div>
+                        )}
     </form>
 
   )

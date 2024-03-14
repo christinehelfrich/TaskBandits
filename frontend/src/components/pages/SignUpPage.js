@@ -10,7 +10,6 @@ const SignUpPage = () => {
 
     const [isWorker, setIsWorker] = useState(true)
     const [page, setPage] = useState(1)
-    // const [showSuccessMessage, setShowSuccessMessage] = useState(false)
     const [isLoading, setisLoading] = useState(false)
     const navigate = useNavigate();
     
@@ -63,7 +62,6 @@ const SignUpPage = () => {
         setValue("isWorkerProfileType", !isWorker)
         setValue("isEmployerProfileType", isWorker)
         setIsWorker(!isWorker)
-        
     }
 
   return (
