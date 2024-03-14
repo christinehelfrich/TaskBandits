@@ -23,7 +23,6 @@ const ProfileDataForm = ({defaultFormValues, onSubmit, isCreateMode, onDelete}) 
 
 
     const onClear = () => {
-      console.log('clear')
       reset();
     }
 
@@ -48,21 +47,25 @@ const ProfileDataForm = ({defaultFormValues, onSubmit, isCreateMode, onDelete}) 
 {page === 1 && (
         <div>
 
-        <p>Are you signing up as a prospective:</p>
+        <p><strong>Are you signing up as a prospective:</strong></p>
+        <div className='profile-form-checkboxes'>
+          <div>
             <label>Worker</label>
             <input 
             type="checkbox"
             name="isWorkerProfileType" 
               {...register("isWorkerProfileType")}
               onChange={onChangeRole}/>
-            <br></br>
+              </div>
+              <div>
             <label>Employer</label>
             <input 
             type="checkbox"
             name="isEmployerProfileType" 
             {...register("isEmployerProfileType")}
             onChange={onChangeRole}/>
-            <br></br>
+            </div>
+            </div>
         <button className='button-primary' onClick={onPageOneToTwo}>Next</button>     
         </div>        
         )}
@@ -131,7 +134,26 @@ const ProfileDataForm = ({defaultFormValues, onSubmit, isCreateMode, onDelete}) 
                   )}
        </div>
 
-       <div className='formRow'>
+        <div className='formRow'>
+                <label className='formitem label area'>Area:</label>
+                <input 
+                        className='formitem input area'
+                  type="text" 
+                  name="area" 
+                  {...register("area", {
+                    required: "Area is Required"
+                })}
+                />
+                
+                {errors.area && (
+                   <Alert wording={errors.area.message} type={'danger'}></Alert>
+                  )}
+        </div>
+
+        {isWorker && (
+            <>
+
+        <div className='formRow'>
                 <label className='formitem label skills'>Skills:</label>
                 <textarea 
                         className='formitem input skills'
@@ -156,22 +178,6 @@ const ProfileDataForm = ({defaultFormValues, onSubmit, isCreateMode, onDelete}) 
                 
                 {errors.hourlyWage && (
                   <Alert wording={errors.hourlyWage.message} type={'danger'}></Alert>
-                  )}
-        </div>
-
-        <div className='formRow'>
-                <label className='formitem label area'>Area:</label>
-                <input 
-                        className='formitem input area'
-                  type="text" 
-                  name="area" 
-                  {...register("area", {
-                    required: "Area is Required"
-                })}
-                />
-                
-                {errors.area && (
-                   <Alert wording={errors.area.message} type={'danger'}></Alert>
                   )}
         </div>
 
@@ -202,6 +208,8 @@ const ProfileDataForm = ({defaultFormValues, onSubmit, isCreateMode, onDelete}) 
                   <Alert wording={errors.experience.message} type={'danger'}></Alert>
                   )}
         </div>
+
+        </>)}
 
         {isCreateMode && (
           <>
@@ -244,14 +252,16 @@ const ProfileDataForm = ({defaultFormValues, onSubmit, isCreateMode, onDelete}) 
                   <Alert wording={errors.passwordRetype?.message} type={'danger'}></Alert>
                   )}
             </div>
+            
           </>
         )}
 
         <div>
         <input className='button-primary' type="submit" value={isCreateMode ? 'Submit' : 'Update Profile'} />
         <button className='button-danger' type="button" onClick={onClear}>{isCreateMode ? 'Clear' : 'Revert'}</button>
-        <button className='button-danger' type="button" onClick={onDelete}>Delete Profile</button>
-        <button className='button-secondary' type="button"><Link className='navLink' to={'/'}>Back</Link></button>
+        {!isCreateMode && (<button className='button-danger' type="button" onClick={onDelete}>Delete Profile</button>)}
+        {!isCreateMode && (<button type="button" className='button-secondary'><Link className='navLink' to={'/'}>Back</Link></button>)}
+        {isCreateMode && (<button type='button' className='button-secondary' onClick={onPageTwoToOne}>Back</button>  )}
         </div>
         </div>
                         )}

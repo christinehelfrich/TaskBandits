@@ -170,4 +170,16 @@ div.detailsCard p {
   display: inline-block;
 }
 
+div.profile-form-checkboxes {
+  margin: 1.5rem;
+}
+
+div.profile-form-checkboxes div {
+  margin: .8rem;
+  display: flex;
+  width: 7rem;
+  justify-content: space-between;
+
+}
+
 
