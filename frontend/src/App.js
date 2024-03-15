@@ -14,6 +14,8 @@ import AuthGuardedRoute from './components/auth/AuthGuardedRoute';
 import SuperUserGuardedRoute from './components/auth/SuperUserGuardedRoute';
 import ViewWorkersPage from './components/pages/ViewWorkersPage';
 import CreateTaskPage from './components/pages/CreateTaskPage';
+import ViewTasksPage from './components/pages/ViewTasksPage';
+import TaskDetailsPage from './components/pages/TaskDetailsPage';
 
 const App = () => {
   return (
@@ -42,6 +44,11 @@ const App = () => {
               <ViewWorkersPage />
             </AuthGuardedRoute>
            } />
+            <Route path="/all-tasks" element={
+            <AuthGuardedRoute>          
+              <ViewTasksPage />
+            </AuthGuardedRoute>
+           } />
            <Route path="/create-new-task" element={
             <AuthGuardedRoute>          
               <CreateTaskPage />
@@ -50,6 +57,10 @@ const App = () => {
            <Route path="/profile-details/:id" element={
             <AuthGuardedRoute>   
              <ProfileDetailsPage />
+             </AuthGuardedRoute>} />
+             <Route path="/task-details/:id" element={
+            <AuthGuardedRoute>   
+             <TaskDetailsPage />
              </AuthGuardedRoute>} />
         </Routes>
 

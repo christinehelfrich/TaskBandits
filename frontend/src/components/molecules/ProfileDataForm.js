@@ -39,7 +39,6 @@ const ProfileDataForm = ({defaultFormValues, onSubmit, isCreateMode, onDelete}) 
       setValue("isEmployerProfileType", isWorker)
       setIsWorker(!isWorker)  
   }
-    console.log('defaultFormValues', defaultFormValues)
 
   return (
     <form className='createProfileForm' onSubmit={handleSubmit(onSubmit)}>

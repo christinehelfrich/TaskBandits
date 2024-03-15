@@ -1,16 +1,17 @@
 import React from 'react'
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import Alert from '../atoms/Alert';
 
 const TaskDataForm = ({defaultFormValues, onSubmit}) => {
+  console.log(defaultFormValues)
 
     const {
         register,
         handleSubmit,
-        reset,
-        setValue,
-        watch,
+        // reset,
+        // setValue,
+        // watch,
         formState: { errors },
       } = useForm({
         defaultValues: defaultFormValues

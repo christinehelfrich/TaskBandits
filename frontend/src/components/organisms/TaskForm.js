@@ -5,19 +5,20 @@ import axios from 'axios';
 import { baseURL } from '../../utils/constant';
 import { useNavigate } from 'react-router-dom';
 
-const TaskForm = () => {
+const TaskForm = ({defaultTaskFormValues}) => {
     const loggedInUser = useSelector((state) => {
         return state.user.user
         });
     const navigate = useNavigate();
+    console.log(defaultTaskFormValues?.title)
 
     const defaultValues = {
-        title: '',
-        description: '',
-        hours: '',
-        hourlyBudget: '',
-        area: '',
-        employerId: ''
+        title: defaultTaskFormValues?.title ? defaultTaskFormValues?.title : '',
+        description: defaultTaskFormValues?.description ? defaultTaskFormValues?.description : '',
+        hours: defaultTaskFormValues?.hours ? defaultTaskFormValues?.hours : '',
+        hourlyBudget: defaultTaskFormValues?.hourlyBudget ? defaultTaskFormValues?.hourlyBudget : '',
+        area: defaultTaskFormValues?.area ? defaultTaskFormValues?.area : '',
+        employerId: defaultTaskFormValues?.employerId ? defaultTaskFormValues?.employerId : ''
     }
 
     const onSubmit = (event) => {
