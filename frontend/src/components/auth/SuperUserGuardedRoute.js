@@ -7,7 +7,6 @@ const SuperUserGuardedRoute = ({ children }) => {
         return state.user.user
     });
     let location = useLocation();
-    console.log('user', user)
 
     if(!user.user.isSuperUser) {
         return <Navigate to="/" state={{ from: location}} replace/>

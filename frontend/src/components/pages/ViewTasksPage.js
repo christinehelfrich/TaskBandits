@@ -10,7 +10,6 @@ const ViewTasksPage = () => {
   useEffect(() => {
       axios.get(`${baseURL}/tasks`)
       .then((res) => {
-        console.log(res)
           setTasks(res.data)
       })
   }, [])

@@ -17,6 +17,7 @@ import CreateTaskPage from './components/pages/CreateTaskPage';
 import ViewTasksPage from './components/pages/ViewTasksPage';
 import TaskDetailsPage from './components/pages/TaskDetailsPage';
 import IsEmployerGuardedRoute from './components/auth/IsEmployerGuardedRoute';
+import IsWorkerGuardedRoute from './components/auth/IsWorkerGuardedRoute';
 
 const App = () => {
   return (
@@ -44,14 +45,18 @@ const App = () => {
            } />
 
             <Route path="/all-workers" element={
-            <AuthGuardedRoute>          
+            <AuthGuardedRoute> 
+              <IsEmployerGuardedRoute>           
               <ViewWorkersPage />
+              </IsEmployerGuardedRoute>
             </AuthGuardedRoute>
            } />
 
             <Route path="/all-tasks" element={
-            <AuthGuardedRoute>          
+            <AuthGuardedRoute> 
+              <IsWorkerGuardedRoute>       
               <ViewTasksPage />
+              </IsWorkerGuardedRoute>  
             </AuthGuardedRoute>
            } />
 

@@ -10,7 +10,6 @@ const TaskForm = ({defaultTaskFormValues}) => {
         return state.user.user
         });
     const navigate = useNavigate();
-    console.log(defaultTaskFormValues?.title)
 
     const defaultValues = {
         title: defaultTaskFormValues?.title ? defaultTaskFormValues?.title : '',

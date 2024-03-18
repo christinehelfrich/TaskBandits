@@ -4,7 +4,6 @@ import { useForm } from 'react-hook-form';
 import Alert from '../atoms/Alert';
 
 const TaskDataForm = ({defaultFormValues, onSubmit}) => {
-  console.log(defaultFormValues)
 
     const {
         register,
