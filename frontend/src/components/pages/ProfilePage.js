@@ -9,7 +9,7 @@ const ProfilePage = () => {
       
   return (
     <div>
-      profile!
+      <h2>My Profile</h2>
       <ProfileForm 
         isCreateMode={false}
         profileData={user.user}
