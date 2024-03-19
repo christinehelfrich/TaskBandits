@@ -3,14 +3,11 @@ import { useForm } from 'react-hook-form';
 // import { Link } from 'react-router-dom';
 import Alert from '../atoms/Alert';
 
-const TaskDataForm = ({defaultFormValues, onSubmit}) => {
+const TaskDataForm = ({defaultFormValues, onSubmit, isReadOnly}) => {
 
     const {
         register,
         handleSubmit,
-        // reset,
-        // setValue,
-        // watch,
         formState: { errors },
       } = useForm({
         defaultValues: defaultFormValues
@@ -21,6 +18,7 @@ const TaskDataForm = ({defaultFormValues, onSubmit}) => {
         <div className='formRow'>
               <label className='formitem label'>Title:</label>
                 <input 
+                readOnly={isReadOnly}
                 className='formitem input'
                 type="text" 
                 name="title" 
@@ -37,6 +35,7 @@ const TaskDataForm = ({defaultFormValues, onSubmit}) => {
         <div className='formRow'>
               <label className='formitem label'>Description:</label>
                 <textarea 
+                readOnly={isReadOnly}
                 className='formitem input'
                 type="text" 
                 name="description" 
@@ -53,6 +52,7 @@ const TaskDataForm = ({defaultFormValues, onSubmit}) => {
         <div className='formRow'>
               <label className='formitem label'>Hours Required:</label>
                 <input 
+                readOnly={isReadOnly}
                 className='formitem input'
                 type="text" 
                 name="hours" 
@@ -67,7 +67,8 @@ const TaskDataForm = ({defaultFormValues, onSubmit}) => {
         </div>
         <div className='formRow'>
               <label className='formitem label'>Hourly Budget:</label>
-                <input 
+                <input
+                readOnly={isReadOnly} 
                 className='formitem input'
                 type="text" 
                 name="hourlyBudget" 
@@ -83,6 +84,7 @@ const TaskDataForm = ({defaultFormValues, onSubmit}) => {
         <div className='formRow'>
               <label className='formitem label'>Area:</label>
                 <input 
+                readOnly={isReadOnly}
                 className='formitem input'
                 type="text" 
                 name="area" 
@@ -97,7 +99,7 @@ const TaskDataForm = ({defaultFormValues, onSubmit}) => {
         </div>
 
         <div>
-        <input className='button-primary' type="submit"  />
+        {!isReadOnly && <input className='button-primary' type="submit"  />}
         </div>
         
     </form>
