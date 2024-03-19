@@ -9,13 +9,11 @@ const TaskDetailsPage = () => {
     const [task, setTask] = useState({})
     const [isLoading, setIsLoading] = useState(false)
     const {id} = useParams()
-    console.log('id in deets page', id)
 
     useEffect(() => {
         setIsLoading(true)
         axios.get(`${baseURL}/task/${id}`)
         .then((res) => {
-            console.log(res)
             setTask(res.data)
             setIsLoading(false)
         })
