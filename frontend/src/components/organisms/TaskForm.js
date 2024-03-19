@@ -19,7 +19,6 @@ const TaskForm = ({defaultTaskFormValues}) => {
         area: defaultTaskFormValues?.area ? defaultTaskFormValues?.area : '',
         employerId: defaultTaskFormValues?.employerId ? defaultTaskFormValues?.employerId : ''
     }
-
     const onSubmit = (event) => {
 
         let newTask = event
@@ -32,7 +31,7 @@ const TaskForm = ({defaultTaskFormValues}) => {
 
   return (
     <div>
-      <TaskDataForm defaultFormValues={defaultValues} onSubmit={onSubmit} isReadOnly={loggedInUser.user._id != defaultTaskFormValues?.employerId}></TaskDataForm>
+      <TaskDataForm defaultFormValues={defaultValues} onSubmit={onSubmit} isReadOnly={(loggedInUser.user._id != defaultTaskFormValues?.employerId) && (defaultTaskFormValues?.employerId != undefined)}></TaskDataForm>
     </div>
   )
 }

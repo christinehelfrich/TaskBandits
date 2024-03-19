@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import Alert from '../atoms/Alert';
 
-const ProfileDataForm = ({defaultFormValues, onSubmit, isCreateMode, onDelete}) => {
+const ProfileDataForm = ({defaultFormValues, onSubmit, isCreateMode, onDelete, isReadOnly}) => {
 
   const [isWorker, setIsWorker] = useState(isCreateMode ? true : defaultFormValues?.isWorkerProfileType)
   const [page, setPage] = useState(isCreateMode ? 1 : 2)
@@ -51,6 +51,7 @@ const ProfileDataForm = ({defaultFormValues, onSubmit, isCreateMode, onDelete}) 
           <div>
             <label>Worker</label>
             <input 
+            readOnly={isReadOnly}
             type="checkbox"
             name="isWorkerProfileType" 
               {...register("isWorkerProfileType")}
@@ -74,6 +75,7 @@ const ProfileDataForm = ({defaultFormValues, onSubmit, isCreateMode, onDelete}) 
       <div className='formRow'>
               <label className='formitem label name'>Name:</label>
                 <input 
+                readOnly={isReadOnly}
                 className='formitem input name'
                 type="text" 
                 name="name" 
@@ -91,6 +93,7 @@ const ProfileDataForm = ({defaultFormValues, onSubmit, isCreateMode, onDelete}) 
       <div className='formRow'>
               <label className='formitem label email'>Email:</label>
               <input 
+              readOnly={isReadOnly}
                 className='formitem input email'
                 type="email" 
                 name="email" 
@@ -108,6 +111,7 @@ const ProfileDataForm = ({defaultFormValues, onSubmit, isCreateMode, onDelete}) 
       <div className='formRow'>
               <label className='formitem label age'>Bio:</label>
                 <textarea 
+                readOnly={isReadOnly}
                   className='formitem input age'
                   type="text" 
                   name="bio" 
@@ -122,6 +126,7 @@ const ProfileDataForm = ({defaultFormValues, onSubmit, isCreateMode, onDelete}) 
       <div className='formRow'>
                 <label className='formitem label photo'>Photo:</label>
                 <input 
+                readOnly={isReadOnly}
                         className='formitem input photo'
                   type="text" 
                   name="photo" 
@@ -136,6 +141,7 @@ const ProfileDataForm = ({defaultFormValues, onSubmit, isCreateMode, onDelete}) 
         <div className='formRow'>
                 <label className='formitem label area'>Area:</label>
                 <input 
+                readOnly={isReadOnly}
                         className='formitem input area'
                   type="text" 
                   name="area" 
@@ -155,6 +161,7 @@ const ProfileDataForm = ({defaultFormValues, onSubmit, isCreateMode, onDelete}) 
         <div className='formRow'>
                 <label className='formitem label skills'>Skills:</label>
                 <textarea 
+                readOnly={isReadOnly}
                         className='formitem input skills'
                   type="text" 
                   name="skills" 
@@ -169,6 +176,7 @@ const ProfileDataForm = ({defaultFormValues, onSubmit, isCreateMode, onDelete}) 
         <div className='formRow'>
                 <label className='formitem label hourlyWage'>Hourly wage:</label>
                 <input 
+                readOnly={isReadOnly}
                         className='formitem input hourlyWage'
                   type="text" 
                   name="hourlyWage" 
@@ -183,6 +191,7 @@ const ProfileDataForm = ({defaultFormValues, onSubmit, isCreateMode, onDelete}) 
         <div className='formRow'>
                 <label className='formitem label isUnder21'>Is under the age of 21 years old:</label>
                 <input 
+                readOnly={isReadOnly}
                         className='formitem input isUnder21'
                   type="checkbox" 
                   name="isUnder21" 
@@ -197,6 +206,7 @@ const ProfileDataForm = ({defaultFormValues, onSubmit, isCreateMode, onDelete}) 
         <div className='formRow'>
                 <label className='formitem label experience'>Experience:</label>
                 <textarea 
+                readOnly={isReadOnly}
                         className='formitem input experience'
                   type="text" 
                   name="experience" 
@@ -215,6 +225,7 @@ const ProfileDataForm = ({defaultFormValues, onSubmit, isCreateMode, onDelete}) 
             <div className='formRow'>
                 <label className='formitem label password'>Password:</label>
                 <input 
+                readOnly={isReadOnly}
                 className='formitem input password'
                 type="password" 
                 name="password" 
@@ -239,6 +250,7 @@ const ProfileDataForm = ({defaultFormValues, onSubmit, isCreateMode, onDelete}) 
             <div className='formRow'>
                 <label className='formitem label passwordRetype'>Retype Password:</label>
                 <input 
+                readOnly={isReadOnly}
                 className='formitem input passwordRetype'
                 type="password" 
                 name="passwordRetype" 
@@ -256,11 +268,11 @@ const ProfileDataForm = ({defaultFormValues, onSubmit, isCreateMode, onDelete}) 
         )}
 
         <div>
-        <input className='button-primary' type="submit" value={isCreateMode ? 'Submit' : 'Update Profile'} />
-        <button className='button-danger' type="button" onClick={onClear}>{isCreateMode ? 'Clear' : 'Revert'}</button>
-        {!isCreateMode && (<button className='button-danger' type="button" onClick={onDelete}>Delete Profile</button>)}
-        {!isCreateMode && (<button type="button" className='button-secondary'><Link className='navLink' to={'/'}>Back</Link></button>)}
-        {isCreateMode && (<button type='button' className='button-secondary' onClick={onPageTwoToOne}>Back</button>  )}
+        {!isReadOnly && <input className='button-primary' type="submit" value={isCreateMode ? 'Submit' : 'Update Profile'} />}
+        {!isReadOnly && <button className='button-danger' type="button" onClick={onClear}>{isCreateMode ? 'Clear' : 'Revert'}</button>}
+        {!isCreateMode && !isReadOnly && (<button className='button-danger' type="button" onClick={onDelete}>Delete Profile</button>)}
+        {!isCreateMode && !isReadOnly && (<button type="button" className='button-secondary'><Link className='navLink' to={'/'}>Back</Link></button>)}
+        {isCreateMode && !isReadOnly && (<button type='button' className='button-secondary' onClick={onPageTwoToOne}>Back</button>  )}
         </div>
         </div>
                         )}
