@@ -18,6 +18,7 @@ import ViewTasksPage from './components/pages/ViewTasksPage';
 import TaskDetailsPage from './components/pages/TaskDetailsPage';
 import IsEmployerGuardedRoute from './components/auth/IsEmployerGuardedRoute';
 import IsWorkerGuardedRoute from './components/auth/IsWorkerGuardedRoute';
+import ViewEmployerTasksPage from './components/pages/ViewEmployerTasksPage';
 
 const App = () => {
   return (
@@ -48,6 +49,14 @@ const App = () => {
             <AuthGuardedRoute> 
               <IsEmployerGuardedRoute>           
               <ViewWorkersPage />
+              </IsEmployerGuardedRoute>
+            </AuthGuardedRoute>
+           } />
+
+          <Route path="/all-employer-tasks" element={
+            <AuthGuardedRoute> 
+              <IsEmployerGuardedRoute>           
+              <ViewEmployerTasksPage />
               </IsEmployerGuardedRoute>
             </AuthGuardedRoute>
            } />

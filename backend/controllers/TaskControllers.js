@@ -11,6 +11,12 @@ module.exports.getTaskById = async (req, res) => {
     res.send(task)
 }
 
+module.exports.getAllTasksByEmployerId = async (req, res) => {
+    const {id} = req.params
+    const task = await TaskModel.find({employerId: id})
+    res.send(task)
+}
+
 module.exports.saveTask = (req, res) => {
     const task = req.body.task
 
