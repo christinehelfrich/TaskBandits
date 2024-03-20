@@ -11,6 +11,8 @@ const TaskForm = ({defaultTaskFormValues}) => {
         });
     const navigate = useNavigate();
 
+    let isReadOnly = (loggedInUser.user._id !== defaultTaskFormValues?.employerId) && (defaultTaskFormValues?.employerId !== undefined)
+
     const defaultValues = {
         title: defaultTaskFormValues?.title ? defaultTaskFormValues?.title : '',
         description: defaultTaskFormValues?.description ? defaultTaskFormValues?.description : '',
@@ -31,7 +33,7 @@ const TaskForm = ({defaultTaskFormValues}) => {
 
   return (
     <div>
-      <TaskDataForm defaultFormValues={defaultValues} onSubmit={onSubmit} isReadOnly={(loggedInUser.user._id != defaultTaskFormValues?.employerId) && (defaultTaskFormValues?.employerId != undefined)}></TaskDataForm>
+      <TaskDataForm defaultFormValues={defaultValues} onSubmit={onSubmit} isReadOnly={isReadOnly}></TaskDataForm>
     </div>
   )
 }

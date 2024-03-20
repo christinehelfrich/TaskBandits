@@ -83,7 +83,7 @@ const ProfileForm = ({isCreateMode, profileData}) => {
     <div>
       {showSuccessMessage && <Alert wording={`Success! Profile successfully ${isCreateMode ? 'Created' : 'Updated'}`} type={'success'}></Alert>}
       {isLoading && <Spinner></Spinner>}
-      <ProfileDataForm defaultFormValues={defaultValues} onSubmit={onSubmit} isCreateMode={isCreateMode} onDelete={onDelete} isReadOnly={loggedInUser.user._id != profileData?._id && profileData?._id != undefined}></ProfileDataForm>
+      <ProfileDataForm defaultFormValues={defaultValues} onSubmit={onSubmit} isCreateMode={isCreateMode} onDelete={onDelete} isReadOnly={loggedInUser.user._id !== profileData?._id && profileData?._id !== undefined}></ProfileDataForm>
       </div>
   )
 }

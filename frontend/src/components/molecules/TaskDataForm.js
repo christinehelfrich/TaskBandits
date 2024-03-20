@@ -2,6 +2,7 @@ import React from 'react'
 import { useForm } from 'react-hook-form';
 // import { Link } from 'react-router-dom';
 import Alert from '../atoms/Alert';
+import BasicModal from '../atoms/BasicModal';
 
 const TaskDataForm = ({defaultFormValues, onSubmit, isReadOnly}) => {
 
@@ -100,6 +101,7 @@ const TaskDataForm = ({defaultFormValues, onSubmit, isReadOnly}) => {
 
         <div>
         {!isReadOnly && <input className='button-primary' type="submit"  />}
+        {isReadOnly && <BasicModal openButtonType={'button-primary'} openButtonWording={"I'm Interested"}></BasicModal>}
         </div>
         
     </form>
