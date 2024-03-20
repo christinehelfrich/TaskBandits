@@ -101,7 +101,14 @@ const TaskDataForm = ({defaultFormValues, onSubmit, isReadOnly}) => {
 
         <div>
         {!isReadOnly && <input className='button-primary' type="submit"  />}
-        {isReadOnly && <BasicModal openButtonType={'button-primary'} openButtonWording={"I'm Interested"}></BasicModal>}
+        {isReadOnly && 
+        <BasicModal 
+        openButtonType={'button-primary'} 
+        openButtonWording={"I'm Interested"} 
+        successButtonWording={"OK"} 
+        modalHeaderWording={"How To Express Interest"}
+        >
+          <p>hi</p></BasicModal>}
         </div>
         
     </form>

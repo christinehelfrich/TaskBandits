@@ -2,7 +2,13 @@ import React, { useState } from 'react'
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
-const BasicModal = ({openButtonType, openButtonWording, successButtonWording, cancelButtonWording}) => {
+const BasicModal = (props,
+  {openButtonType, 
+    openButtonWording, 
+    successButtonWording, 
+    cancelButtonWording, 
+    modalHeaderWording
+  }) => {
 
     const [show, setShow] = useState(false);
 
@@ -15,15 +21,17 @@ const BasicModal = ({openButtonType, openButtonWording, successButtonWording, ca
 
         <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>{modalHeaderWording ? modalHeaderWording : 'Modal heading'}</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Woohoo, you are reading this text in a modal!</Modal.Body>
+        <Modal.Body>
+        {props.children}
+        </Modal.Body>
         <Modal.Footer>
-          <button className='button-secondary' onClick={handleClose}>
-            Close
-          </button>
+          {cancelButtonWording && <button className='button-secondary' onClick={handleClose}>
+            {cancelButtonWording}
+          </button>}
           <button className='button-primary' onClick={handleClose}>
-            Save Changes
+            {successButtonWording ? successButtonWording : 'OK'}
           </button>
         </Modal.Footer>
 

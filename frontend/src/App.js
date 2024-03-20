@@ -25,7 +25,7 @@ const App = () => {
 
 <>
       <Navbar></Navbar>
-      <main>
+      <main className="d-flex p-2">
       <Routes>
            <Route path="/" element={<HomePage />} />
            <Route path="/login" element={<LoginPage />} />
