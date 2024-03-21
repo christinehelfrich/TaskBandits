@@ -19,6 +19,8 @@ const BasicModal = (props,
     <div>
         <button onClick={handleShow} className={openButtonType} type="button">{openButtonWording}</button>
 
+
+
         <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>{modalHeaderWording ? modalHeaderWording : 'Modal heading'}</Modal.Title>
