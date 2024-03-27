@@ -21,6 +21,11 @@ nav.navbar {
   padding: 1rem;
 }
 
+nav img.nav-img {
+  width: 1.7rem;
+  margin: 1rem;
+}
+
 nav.navbar ul {
   list-style: none;
   display: flex;
