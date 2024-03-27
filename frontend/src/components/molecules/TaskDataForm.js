@@ -108,7 +108,7 @@ const TaskDataForm = ({defaultFormValues, onSubmit, isReadOnly}) => {
         successButtonWording={"OK"} 
         modalHeaderWording={"How To Express Interest"}
         >
-          <p>hi</p></BasicModal>}
+          <p>To express interest, please: ...</p></BasicModal>}
         </div>
         
     </form>

@@ -2,12 +2,13 @@ import React, { useState } from 'react'
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
-const BasicModal = (props,
+const BasicModal = (
   {openButtonType, 
     openButtonWording, 
     successButtonWording, 
     cancelButtonWording, 
-    modalHeaderWording
+    modalHeaderWording,
+    children
   }) => {
 
     const [show, setShow] = useState(false);
@@ -24,7 +25,7 @@ const BasicModal = (props,
           <Modal.Title>{modalHeaderWording ? modalHeaderWording : 'Modal heading'}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        {props.children}
+        {children}
         </Modal.Body>
         <Modal.Footer>
           {cancelButtonWording && <button className='button-secondary' onClick={handleClose}>
