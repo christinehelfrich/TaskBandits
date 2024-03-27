@@ -1,6 +1,6 @@
 ## Welcome
 
-TaskBandits is a fully equipped app which allows homeowners to hire help, which simultaniously allowing skilled workers to find work.
+TaskBandits is a fully equipped app which allows homeowners to hire help, while simultaniously allowing skilled workers to find work.
 
 ## Getting Started 
 
