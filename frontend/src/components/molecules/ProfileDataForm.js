@@ -6,6 +6,7 @@ import Alert from '../atoms/Alert';
 const ProfileDataForm = ({defaultFormValues, onSubmit, isCreateMode, onDelete, isReadOnly}) => {
 
   const [isWorker, setIsWorker] = useState(isCreateMode ? true : defaultFormValues?.isWorkerProfileType)
+  const [isFormEdited, setIsFormEdited] = useState(false)
   const [page, setPage] = useState(isCreateMode ? 1 : 2)
     const {
         register,
@@ -40,6 +41,10 @@ const ProfileDataForm = ({defaultFormValues, onSubmit, isCreateMode, onDelete, i
       setIsWorker(!isWorker)  
   }
 
+  const onFormChange = (event) => {
+    setIsFormEdited(true)
+  }
+
   return (
     <form className='createProfileForm' onSubmit={handleSubmit(onSubmit)}>
 
@@ -54,7 +59,9 @@ const ProfileDataForm = ({defaultFormValues, onSubmit, isCreateMode, onDelete, i
             readOnly={isReadOnly}
             type="checkbox"
             name="isWorkerProfileType" 
-              {...register("isWorkerProfileType")}
+              {...register("isWorkerProfileType", {
+                onChange: (e) => {onFormChange(e)}
+              })}
               onChange={onChangeRole}/>
               </div>
               <div>
@@ -62,7 +69,9 @@ const ProfileDataForm = ({defaultFormValues, onSubmit, isCreateMode, onDelete, i
             <input 
             type="checkbox"
             name="isEmployerProfileType" 
-            {...register("isEmployerProfileType")}
+            {...register("isEmployerProfileType", {
+              onChange: (e) => {onFormChange(e)}
+            })}
             onChange={onChangeRole}/>
             </div>
             </div>
@@ -80,7 +89,8 @@ const ProfileDataForm = ({defaultFormValues, onSubmit, isCreateMode, onDelete, i
                 type="text" 
                 name="name" 
                 {...register("name", {
-                  required: "Name is Required"
+                  required: "Name is Required",
+                  onChange: (e) => {onFormChange(e)}
                 })}
               />
 
@@ -98,7 +108,8 @@ const ProfileDataForm = ({defaultFormValues, onSubmit, isCreateMode, onDelete, i
                 type="email" 
                 name="email" 
                 {...register("email", {
-                  required: "Email is Required"
+                  required: "Email is Required",
+                  onChange: (e) => {onFormChange(e)}
                 })}
               />
               
@@ -115,7 +126,9 @@ const ProfileDataForm = ({defaultFormValues, onSubmit, isCreateMode, onDelete, i
                   className='formitem input age'
                   type="text" 
                   name="bio" 
-                  {...register("bio")}
+                  {...register("bio", {
+                    onChange: (e) => {onFormChange(e)}
+                  })}
                 />
                 
                 {errors.bio && (
@@ -130,7 +143,9 @@ const ProfileDataForm = ({defaultFormValues, onSubmit, isCreateMode, onDelete, i
                         className='formitem input photo'
                   type="text" 
                   name="photo" 
-                  {...register("photo")}
+                  {...register("photo", {
+                    onChange: (e) => {onFormChange(e)}
+                  })}
                 />
                 
                 {errors.photo && (
@@ -146,7 +161,8 @@ const ProfileDataForm = ({defaultFormValues, onSubmit, isCreateMode, onDelete, i
                   type="text" 
                   name="area" 
                   {...register("area", {
-                    required: "Area is Required"
+                    required: "Area is Required",
+                    onChange: (e) => {onFormChange(e)}
                 })}
                 />
                 
@@ -165,7 +181,9 @@ const ProfileDataForm = ({defaultFormValues, onSubmit, isCreateMode, onDelete, i
                         className='formitem input skills'
                   type="text" 
                   name="skills" 
-                  {...register("skills")}
+                  {...register("skills", {
+                    onChange: (e) => {onFormChange(e)}
+                  })}
                 />
                 
                 {errors.skills && (
@@ -180,7 +198,9 @@ const ProfileDataForm = ({defaultFormValues, onSubmit, isCreateMode, onDelete, i
                         className='formitem input hourlyWage'
                   type="text" 
                   name="hourlyWage" 
-                  {...register("hourlyWage")}
+                  {...register("hourlyWage", {
+                    onChange: (e) => {onFormChange(e)}
+                  })}
                 />
                 
                 {errors.hourlyWage && (
@@ -195,7 +215,9 @@ const ProfileDataForm = ({defaultFormValues, onSubmit, isCreateMode, onDelete, i
                         className='formitem input isUnder21'
                   type="checkbox" 
                   name="isUnder21" 
-                  {...register("isUnder21")}
+                  {...register("isUnder21", {
+                    onChange: (e) => {onFormChange(e)}
+                  })}
                 />
                 
                 {errors.isUnder21 && (
@@ -210,7 +232,9 @@ const ProfileDataForm = ({defaultFormValues, onSubmit, isCreateMode, onDelete, i
                         className='formitem input experience'
                   type="text" 
                   name="experience" 
-                  {...register("experience")}
+                  {...register("experience", {
+                    onChange: (e) => {onFormChange(e)}
+                  })}
                 />
                 
                 {errors.experience && (
@@ -238,7 +262,9 @@ const ProfileDataForm = ({defaultFormValues, onSubmit, isCreateMode, onDelete, i
                   pattern: {
                     value: /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/,
                     message: "Password must have at least a symbol, upper and lower case letters and a number"
-                  }
+                  },
+                    onChange: (e) => {onFormChange(e)}
+                  
                 })}
                 />
 
@@ -256,7 +282,8 @@ const ProfileDataForm = ({defaultFormValues, onSubmit, isCreateMode, onDelete, i
                 name="passwordRetype" 
                 {...register("passwordRetype", {          
                     validate: value =>
-                    value === password.current || "The passwords do not match"})}
+                    value === password.current || "The passwords do not match",
+                    onChange: (e) => {onFormChange(e)}})}
                 />
 
                 {errors.passwordRetype && (
@@ -268,8 +295,8 @@ const ProfileDataForm = ({defaultFormValues, onSubmit, isCreateMode, onDelete, i
         )}
 
         <div>
-        {!isReadOnly && <input className='button-primary' type="submit" value={isCreateMode ? 'Submit' : 'Update Profile'} />}
-        {!isReadOnly && <button className='button-danger' type="button" onClick={onClear}>{isCreateMode ? 'Clear' : 'Revert'}</button>}
+        {!isReadOnly && <input className={`button-primary ${isFormEdited ? '' : 'button-disabled'}`} type="submit" disabled={!isFormEdited} aria-disabled={!isFormEdited} value={isCreateMode ? 'Submit' : 'Update Profile'} />}
+        {!isReadOnly && <button className={`button-danger ${isFormEdited ? '' : 'button-disabled'}`} disabled={!isFormEdited} aria-disabled={!isFormEdited} type="button" onClick={onClear}>{isCreateMode ? 'Clear' : 'Revert'}</button>}
         {!isCreateMode && !isReadOnly && (<button className='button-danger' type="button" onClick={onDelete}>Delete Profile</button>)}
         {!isCreateMode && !isReadOnly && (<button type="button" className='button-secondary'><Link className='navLink' to={'/'}>Back</Link></button>)}
         {isCreateMode && !isReadOnly && (<button type='button' className='button-secondary' onClick={onPageTwoToOne}>Back</button>  )}

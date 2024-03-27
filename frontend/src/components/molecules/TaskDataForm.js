@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
 // import { Link } from 'react-router-dom';
 import Alert from '../atoms/Alert';
 import BasicModal from '../atoms/BasicModal';
 
 const TaskDataForm = ({defaultFormValues, onSubmit, isReadOnly}) => {
+  const [isFormEdited, setIsFormEdited] = useState(false)
 
     const {
         register,
@@ -13,6 +14,10 @@ const TaskDataForm = ({defaultFormValues, onSubmit, isReadOnly}) => {
       } = useForm({
         defaultValues: defaultFormValues
       });
+
+      const onFormChange = (event) => {
+        setIsFormEdited(true)
+      }
 
   return (
     <form className='createProfileForm' onSubmit={handleSubmit(onSubmit)}>
@@ -24,7 +29,9 @@ const TaskDataForm = ({defaultFormValues, onSubmit, isReadOnly}) => {
                 type="text" 
                 name="title" 
                 {...register("title", {
-                  required: "Title is Required"
+                  required: "Title is Required",
+                  onChange: (e) => {onFormChange(e)
+                  }
                 })}
               />
 
@@ -41,7 +48,8 @@ const TaskDataForm = ({defaultFormValues, onSubmit, isReadOnly}) => {
                 type="text" 
                 name="description" 
                 {...register("description", {
-                  required: "Description is Required"
+                  required: "Description is Required",
+                  onChange: (e) => {onFormChange(e)}
                 })}
               />
 
@@ -58,7 +66,8 @@ const TaskDataForm = ({defaultFormValues, onSubmit, isReadOnly}) => {
                 type="text" 
                 name="hours" 
                 {...register("hours", {
-                  required: "Hours is Required"
+                  required: "Hours is Required",
+                  onChange: (e) => {onFormChange(e)}
                 })}
               />
 
@@ -74,7 +83,8 @@ const TaskDataForm = ({defaultFormValues, onSubmit, isReadOnly}) => {
                 type="text" 
                 name="hourlyBudget" 
                 {...register("hourlyBudget", {
-                  required: "Hourly Budget is Required"
+                  required: "Hourly Budget is Required",
+                  onChange: (e) => {onFormChange(e)}
                 })}
               />
 
@@ -90,7 +100,8 @@ const TaskDataForm = ({defaultFormValues, onSubmit, isReadOnly}) => {
                 type="text" 
                 name="area" 
                 {...register("area", {
-                  required: "Area is Required"
+                  required: "Area is Required",
+                  onChange: (e) => {onFormChange(e)}
                 })}
               />
 
@@ -100,7 +111,7 @@ const TaskDataForm = ({defaultFormValues, onSubmit, isReadOnly}) => {
         </div>
 
         <div>
-        {!isReadOnly && <input className='button-primary' type="submit"  />}
+        {!isReadOnly && <input disabled={!isFormEdited} aria-disabled={!isFormEdited} className={`button-primary ${isFormEdited ? '' : 'button-disabled'}`} type="submit"  />}
         {isReadOnly && 
         <BasicModal 
         openButtonType={'button-primary'} 

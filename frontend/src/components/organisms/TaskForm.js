@@ -31,9 +31,14 @@ const TaskForm = ({defaultTaskFormValues}) => {
         })
     }
 
+
   return (
     <div>
-      <TaskDataForm defaultFormValues={defaultValues} onSubmit={onSubmit} isReadOnly={isReadOnly}></TaskDataForm>
+      <TaskDataForm 
+      defaultFormValues={defaultValues} 
+      onSubmit={onSubmit} 
+      isReadOnly={isReadOnly}
+      ></TaskDataForm>
     </div>
   )
 }

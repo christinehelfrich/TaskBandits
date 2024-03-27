@@ -123,6 +123,9 @@ form.createProfileForm .formitem.label{
   padding: .5rem;
 }
 
+.button-disabled {
+  opacity: 50%;
+}
 
 div.detailsCard {
   margin: 2rem;
