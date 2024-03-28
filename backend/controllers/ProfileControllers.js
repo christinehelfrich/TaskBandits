@@ -1,4 +1,6 @@
 const ProfileModel = require("../models/ProfileModel")
+const express = require("express");
+const app = express()
 
 module.exports.getProfiles = async (req, res) => {
     const profiles = await ProfileModel.find()
