@@ -1,7 +1,12 @@
 const express = require("express");
 
+module.exports.validatePassword = (password) => {
+    let pattern = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/
+    return pattern.test(password);
+}
+
 module.exports.isPasswordValid = (req, res, next) => {
-    const validateLength = req.body.profile.password.length >= 20;
+    validateLength = validatePassword(req.body.profile.password)
 
     if(validateLength) {
         next()
