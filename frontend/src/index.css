@@ -22,8 +22,8 @@ nav.navbar {
 }
 
 nav img.nav-img {
-  width: 1.7rem;
-  margin: 1rem;
+  width: 3rem;
+  margin: .5rem;
 }
 
 nav.navbar ul {
@@ -46,6 +46,7 @@ nav.navbar ul {
   font-size: 1.5em;
   font-weight: 200;
   color: rgb(81, 103, 164);
+  margin-bottom: 0;
 }
 
 .navbar .homeButton {
@@ -192,5 +193,4 @@ div.profile-form-checkboxes div {
   justify-content: space-between;
 
 }
-
 
