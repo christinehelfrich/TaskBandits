@@ -75,7 +75,7 @@ const ProfileDataForm = ({defaultFormValues, onSubmit, isCreateMode, onDelete, i
             onChange={onChangeRole}/>
             </div>
             </div>
-        <button className='button-primary' onClick={onPageOneToTwo}>Next</button>     
+        <button className='button-primary profilenext' onClick={onPageOneToTwo}>Next</button>     
         </div>        
         )}
 

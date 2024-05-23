@@ -17,7 +17,7 @@ const Navbar = () => {
   return (
     <nav className='navbar'>
       <div className='titleLogo'>
-        <img className='nav-img' src={'/favicon.ico'}></img>
+        <img alt='logo' className='nav-img' src={'/favicon.ico'}></img>
       <Link className='navLink' to={'/'}><h1>Task Bandits</h1></Link>
       </div>
       <ul>

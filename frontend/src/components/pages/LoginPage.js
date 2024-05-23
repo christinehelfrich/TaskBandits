@@ -90,7 +90,7 @@ const LoginPage = () => {
                   )}
             </div>
 
-            <input type="submit" className='button-primary' /> 
+            <input type="submit" className='button-primary login' /> 
       </form>
 
       

@@ -64,6 +64,31 @@ nav.navbar ul {
   margin-bottom: 0 !important;
 }
 
+.homeLinks {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 10rem;
+  height: 10rem;
+  list-style: none;
+  background-color: rgb(81, 103, 164);;
+  margin: 0;
+  padding: 0;
+}
+
+.homeLinkLi {
+  margin: 0 auto;
+}
+
+.homeLinkLi .homeLink p {
+  color: white;
+  margin: .5rem;
+}
+.homeLinkLi .homeLink p:hover {
+  font-size: larger;
+}
+
 .createProfileForm {
   display: flex;
   flex-direction: column;
@@ -98,8 +123,15 @@ form.createProfileForm .formitem.label{
   
 }
 
+form.createProfileForm .button-primary.login {
+  margin-left: 67%;
+  margin-top: 1rem;
+}
+
+
+
 .button-primary {
-  margin: 1rem;
+
   width: 8rem;
   background-color: rgb(81, 103, 164);
   color: white;
