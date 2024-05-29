@@ -172,6 +172,12 @@ div.detailsCard {
   background-color: rgb(222, 227, 241);
 }
 
+.detailsCard p{
+  text-decoration: none;
+  color: black;
+  margin: .25rem !important;
+}
+
 div.detailsCard p {
   margin-top: 0 !important;
   margin-bottom: 1rem;

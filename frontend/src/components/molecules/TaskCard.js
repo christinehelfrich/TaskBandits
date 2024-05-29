@@ -1,14 +1,24 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import EditIcon from '../atoms/EditIcon'
+import {useSelector} from "react-redux"
 
 const TaskCard = ({task}) => {
-  return (
+  const user = useSelector((state) => {
+    return state.user.user
+    });
+
+  return (        
+  <Link to={`/task-details/${task._id}`}>
     <div className='detailsCard'>
         <p>{task.title}</p>
-        <Link to={`/task-details/${task._id}`}><EditIcon></EditIcon></Link>
+
+          {task.employerId === user.user._id &&
+          <EditIcon></EditIcon>
+            }   
       
     </div>
+    </Link>
   )
 }
 
