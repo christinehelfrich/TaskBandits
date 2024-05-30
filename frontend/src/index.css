@@ -64,6 +64,51 @@ nav.navbar ul {
   margin-bottom: 0 !important;
 }
 
+.hamburger-icon {
+  display: none;
+}
+
+ /* Mobile */
+@media screen and (max-width: 850px) {
+
+  .navbar {
+    align-items: flex-start !important;
+    position: relative;
+  }
+
+  .hamburger-icon {
+    margin: 1rem;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    justify-content: space-around;
+    flex-flow: column nowrap;
+    z-index: 10;
+  }
+
+  .hamburger {
+    width: 2rem;
+    height: 0.25rem;
+    border-radius: 10px;
+    background-color: black;
+    transform-origin: 1px;
+    transition: all 0.3s linear;
+  }
+
+  ul.navLinkItems {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+  }
+ 
+  ul.navLinkItems li {
+    margin-top: .5rem;
+  }
+
+
+}
+
+
 .homeLinks {
   display: flex;
   align-content: center;

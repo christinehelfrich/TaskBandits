@@ -53,6 +53,7 @@ const HomePage = () => {
       
       {!user.isAuthenticated && <li className='homeLinkLi'><Link className='homeLink' to={'/login'}><p>Log In</p></Link></li>}
       {!user.isAuthenticated && <li className='homeLinkLi'><Link className='homeLink' to={'/signup'}><p>Sign Up</p></Link></li>}
+      {user.isAuthenticated && <li className='homeLinkLi' ><Link className='homeLink' to={'/profile'}><p>Welcome, {user.user.name}</p></Link></li> }
       {user.isAuthenticated && <li className='homeLinkLi' ><Link onClick={onLogout} className='homeLink' to={'/login'}><p>Logout</p></Link></li> }
       </ul>
     </div>

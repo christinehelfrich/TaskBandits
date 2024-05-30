@@ -16,6 +16,10 @@ const ViewTasksPage = () => {
 
   return (
     <div>
+      {
+        tasks.length <= 0 &&
+        <p>No Tasks Yet!</p>
+      }
         <TaskList tasks={tasks}></TaskList>
       
     </div>
