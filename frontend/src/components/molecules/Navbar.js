@@ -47,15 +47,15 @@ const Navbar = () => {
       {navOpen && 
       <ul className='navLinkItems'>
       
-      {!user.isAuthenticated && <li className='homeButton'><Link className='navLink' to={'/login'} onClick={() => setNavOpen(false)}><p>Log In</p></Link></li>}
-      {!user.isAuthenticated && <li className='homeButton'><Link className='navLink' to={'/signup'} onClick={() => setNavOpen(false)}><p>Sign Up</p></Link></li>}
-      {user.isAuthenticated && (user.user.isEmployerProfileType || user.user.isSuperUser) && <li className='homeButton'><Link className='navLink' to={'/all-workers'} onClick={() => setNavOpen(false)}><p>View All Workers</p></Link></li> }
-      {user.isAuthenticated && (user.user.isWorkerProfileType || user.user.isSuperUser) && <li className='homeButton'><Link className='navLink' to={'/all-tasks'} onClick={() => setNavOpen(false)}><p>View All Tasks</p></Link></li> }
-      {user.isAuthenticated && (user.user.isEmployerProfileType || user.user.isSuperUser) && <li className='homeButton'><Link className='navLink' to={'/create-new-task'} onClick={() => setNavOpen(false)}><p>Create New Task</p></Link></li> }
-      {user.isAuthenticated && (user.user.isEmployerProfileType || user.user.isSuperUser) && <li className='homeButton'><Link className='navLink' to={'/all-employer-tasks'} onClick={() => setNavOpen(false)}><p>My Created Tasks</p></Link></li> }
-      {user.isAuthenticated && user.user.isSuperUser && <li className='homeButton'><Link className='navLink' to={'/profiles'} onClick={() => setNavOpen(false)}><p>View all Profiles</p></Link></li> }
-      {user.isAuthenticated && <li className='homeButton'><Link className='navLink' to={'/profile'} onClick={() => setNavOpen(false)}><p>My Profile</p></Link></li> }
-      {user.isAuthenticated && <li className='homeButton' ><Link  className='navLink' to={'/login'} onClick={() => {onLogout(); setNavOpen(false)}}><p>Logout</p></Link></li> }
+      {!user.isAuthenticated && <li className='homeButton'><Link className='navLink' to={'/login'} onClick={() => setNavOpen(window.innerWidth > 850)}><p>Log In</p></Link></li>}
+      {!user.isAuthenticated && <li className='homeButton'><Link className='navLink' to={'/signup'} onClick={() => setNavOpen(window.innerWidth > 850)}><p>Sign Up</p></Link></li>}
+      {user.isAuthenticated && (user.user.isEmployerProfileType || user.user.isSuperUser) && <li className='homeButton'><Link className='navLink' to={'/all-workers'} onClick={() => setNavOpen(window.innerWidth > 850)}><p>View All Workers</p></Link></li> }
+      {user.isAuthenticated && (user.user.isWorkerProfileType || user.user.isSuperUser) && <li className='homeButton'><Link className='navLink' to={'/all-tasks'} onClick={() => setNavOpen(window.innerWidth > 850)}><p>View All Tasks</p></Link></li> }
+      {user.isAuthenticated && (user.user.isEmployerProfileType || user.user.isSuperUser) && <li className='homeButton'><Link className='navLink' to={'/create-new-task'} onClick={() => setNavOpen(window.innerWidth > 850)}><p>Create New Task</p></Link></li> }
+      {user.isAuthenticated && (user.user.isEmployerProfileType || user.user.isSuperUser) && <li className='homeButton'><Link className='navLink' to={'/all-employer-tasks'} onClick={() => setNavOpen(window.innerWidth > 850)}><p>My Created Tasks</p></Link></li> }
+      {user.isAuthenticated && user.user.isSuperUser && <li className='homeButton'><Link className='navLink' to={'/profiles'} onClick={() => setNavOpen(window.innerWidth > 850)}><p>View all Profiles</p></Link></li> }
+      {user.isAuthenticated && <li className='homeButton'><Link className='navLink' to={'/profile'} onClick={() => setNavOpen(window.innerWidth > 850)}><p>My Profile</p></Link></li> }
+      {user.isAuthenticated && <li className='homeButton' ><Link  className='navLink' to={'/login'} onClick={() => {onLogout(); setNavOpen(window.innerWidth > 850)}}><p>Logout</p></Link></li> }
       </ul>
       }
 
