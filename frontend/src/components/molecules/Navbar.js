@@ -40,9 +40,9 @@ const Navbar = () => {
       </div>
 
       <div className="hamburger-icon" onClick={onToggleHamburgerMenu}>
-          <div className='hamburger bar-1' />
-          <div className='hamburger bar-2' />
-          <div className='hamburger bar-3' />
+        <div className={navOpen ? 'hamburger bar-1 toggleOpen' : 'hamburger bar-1'} />
+          <div className={navOpen ? 'hamburger bar-2 toggleOpen' : 'hamburger bar-2'} />
+          <div className={navOpen ? 'hamburger bar-3 toggleOpen' : 'hamburger bar-3'} />
       </div>
       {navOpen && 
       <ul className='navLinkItems'>

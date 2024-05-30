@@ -86,11 +86,15 @@ nav.navbar ul {
   .hamburger-icon {
     margin: 1rem;
     width: 2rem;
-    height: 2rem;
+    height: 1.75rem;
     display: flex;
     justify-content: space-around;
     flex-flow: column nowrap;
     z-index: 10;
+  }
+
+  .hamburger-icon:hover {
+    cursor: pointer;
   }
 
   .hamburger {
@@ -99,7 +103,27 @@ nav.navbar ul {
     border-radius: 10px;
     background-color: black;
     transform-origin: 1px;
-    transition: all 0.3s linear;
+    transition: all 500ms ease-in-out;
+  }
+
+  .toggleOpen:nth-of-type(1) {
+    transition: all 500ms ease-in-out;
+    transform: rotate(45deg);
+    transform-origin: top left;
+    width: 28px;
+  }
+  
+  .toggleOpen:nth-of-type(2) {
+    transition: all 500ms ease-in-out;
+    transform-origin: center;
+    width: 0;
+  }
+  
+  .toggleOpen:nth-of-type(3) {
+    transition: all 500ms ease-in-out;
+    transform: rotate(-45deg);
+    transform-origin: bottom left;
+    width: 28px;
   }
 
   ul.navLinkItems {
