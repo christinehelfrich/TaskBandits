@@ -298,8 +298,9 @@ const ProfileDataForm = ({defaultFormValues, onSubmit, isCreateMode, onDelete, i
         {!isReadOnly && <input className={`button-primary ${isFormEdited ? '' : 'button-disabled'}`} type="submit" disabled={!isFormEdited} aria-disabled={!isFormEdited} value={isCreateMode ? 'Submit' : 'Update Profile'} />}
         {!isReadOnly && <button className={`button-danger ${isFormEdited ? '' : 'button-disabled'}`} disabled={!isFormEdited} aria-disabled={!isFormEdited} type="button" onClick={onClear}>{isCreateMode ? 'Clear' : 'Revert'}</button>}
         {!isCreateMode && !isReadOnly && (<button className='button-danger' type="button" onClick={onDelete}>Delete Profile</button>)}
-        {!isCreateMode && !isReadOnly && (<button type="button" className='button-secondary'><Link className='navLink' to={'/'}>Back</Link></button>)}
+        {!isCreateMode && (<button type="button" className='button-secondary'><Link className='navLink' to={'/'}>Back</Link></button>)}
         {isCreateMode && !isReadOnly && (<button type='button' className='button-secondary' onClick={onPageTwoToOne}>Back</button>  )}
+        {isReadOnly && isWorker && <button type="button" className={`button-primary`}>Contact</button>}
         </div>
         </div>
                         )}
