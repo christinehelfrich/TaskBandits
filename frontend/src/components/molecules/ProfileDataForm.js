@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import Alert from '../atoms/Alert';
+import BasicModal from '../atoms/BasicModal';
 
 const ProfileDataForm = ({defaultFormValues, onSubmit, isCreateMode, onDelete, isReadOnly}) => {
 
@@ -300,7 +301,14 @@ const ProfileDataForm = ({defaultFormValues, onSubmit, isCreateMode, onDelete, i
         {!isCreateMode && !isReadOnly && (<button className='button-danger' type="button" onClick={onDelete}>Delete Profile</button>)}
         {!isCreateMode && (<button type="button" className='button-secondary'><Link className='navLink' to={'/'}>Back</Link></button>)}
         {isCreateMode && !isReadOnly && (<button type='button' className='button-secondary' onClick={onPageTwoToOne}>Back</button>  )}
-        {isReadOnly && isWorker && <button type="button" className={`button-primary`}>Contact</button>}
+        {isReadOnly && isWorker &&         
+        <BasicModal 
+        openButtonType={'button-primary'} 
+        openButtonWording={"Contact"} 
+        successButtonWording={"OK"} 
+        modalHeaderWording={"How To Contact"}
+        >
+          <p>To contact, please: ...</p></BasicModal>}
         </div>
         </div>
                         )}
