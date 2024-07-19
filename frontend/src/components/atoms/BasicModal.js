@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
 
 const BasicModal = (
   {openButtonType, 
@@ -17,7 +16,7 @@ const BasicModal = (
     const handleShow = () => setShow(true);
 
   return (
-    <div>
+    <>
         <button onClick={handleShow} className={openButtonType} type="button">{openButtonWording}</button>
 
         <Modal show={show} onHide={handleClose}>
@@ -38,7 +37,7 @@ const BasicModal = (
 
         </Modal>
       
-    </div>
+    </>
   )
 }
 
