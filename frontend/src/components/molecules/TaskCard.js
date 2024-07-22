@@ -7,6 +7,7 @@ const TaskCard = ({task}) => {
   const user = useSelector((state) => {
     return state.user.user
     });
+    console.log(task)
 
   return (        
   <Link to={`/task-details/${task._id}`}>
